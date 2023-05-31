@@ -49,6 +49,12 @@ dependencies:
   #shared preference
   shared_preferences: ^2.0.15
 
+  #getx
+  get: ^4.6.5
+  get_storage: ^2.1.1
+
+  #google_sign_in
+  google_sign_in: ^6.0.2
   
   cupertino_icons: ^1.0.2
 
@@ -58,6 +64,7 @@ dev_dependencies:
 
   build_runner:
   mobx_codegen:
+  change_app_package_name: ^1.1.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
