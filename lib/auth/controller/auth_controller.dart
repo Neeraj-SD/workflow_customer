@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -41,15 +42,16 @@ class AuthController extends GetxController {
       final auth = await result!.authentication;
 
       Map data = {'access_token': auth.accessToken};
-      final response = await api.postApi('/users/google/', data);
+      log(data.toString());
+      final response = await api.postApi('/auth/google/', data);
+      log(response.body.toString());
       final apiToken = response.body['key'];
 
       await _storage.write('authToken', apiToken);
 
-      final Response userResponse = await api.getApi('/api/users/me');
+      final Response userResponse = await api.getApi('/api/user/me/');
 
-      final UserModel userModel =
-          userModelFromJson(userResponse.body['results'][0]);
+      final UserModel userModel = userModelFromJson(userResponse.body);
       _storage.write('user', userModel.toJson());
 
       if (userModel.isComplete ?? false) {

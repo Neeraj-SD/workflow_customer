@@ -21,18 +21,29 @@ class ApiProvider extends GetConnect {
 
     // Request Modifier
     httpClient.addRequestModifier<dynamic>((request) {
+      print('called');
+      log("-------------------------------------------------------------");
+      log(request.url.toString());
+      log(request.method.toString());
+      log(request.headers.toString());
+
       //add header
       final token = storage.read('authToken');
 
+      request.headers['accept'] = "application/json";
       request.headers['Authorization'] = "Token $token";
 
       return request;
     });
 
-    httpClient.baseUrl = 'http://127.0.0.1:8000';
+    httpClient.baseUrl = 'http://workflow.centralindia.cloudapp.azure.com';
 
     // Response Modifiers
     httpClient.addResponseModifier((request, response) {
+      print('called');
+
+      log(response.body.toString());
+      log("-------------------------------------------------------------");
       errorHandler(response);
       return response;
     });

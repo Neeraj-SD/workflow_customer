@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
           themeMode: appData.mode,
           // home: SplashScreen(),
-          // home: SplashScreen(),
+          // home: LoginScreen(),
           initialRoute: '/',
 
           getPages: [
