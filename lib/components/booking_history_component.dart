@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/last_bookings_model.dart';
-import 'package:home_hub/utils/colors.dart';
-import 'package:home_hub/utils/images.dart';
-import 'package:home_hub/utils/widgets.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/last_bookings_model.dart';
+import 'package:workflow_customer/utils/colors.dart';
+import 'package:workflow_customer/utils/images.dart';
+import 'package:workflow_customer/utils/widgets.dart';
 
 class BookingHistoryComponent extends StatelessWidget {
   final LastBookingsModel? lastBookings;

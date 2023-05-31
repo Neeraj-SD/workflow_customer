@@ -1,6 +1,6 @@
-import 'package:home_hub/models/provider_services_model.dart';
-import 'package:home_hub/models/services_model.dart';
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/models/provider_services_model.dart';
+import 'package:workflow_customer/models/services_model.dart';
+import 'package:workflow_customer/utils/images.dart';
 
 List<ServiceProviderModel> likedProviders = getLikedServices();
 
@@ -16,7 +16,17 @@ class ServiceProviderModel {
   bool isLiked;
   List<ProviderServicesModel> providerServices;
 
-  ServiceProviderModel(this.id, this.name, this.providerImage, this.occupation, this.star, this.detailDescription, this.jobs, this.perHourPrice, this.isLiked, this.providerServices);
+  ServiceProviderModel(
+      this.id,
+      this.name,
+      this.providerImage,
+      this.occupation,
+      this.star,
+      this.detailDescription,
+      this.jobs,
+      this.perHourPrice,
+      this.isLiked,
+      this.providerServices);
 }
 
 List<ServiceProviderModel> getPlumbers() {
@@ -33,36 +43,51 @@ List<ServiceProviderModel> getPlumbers() {
     false,
     getProviderServices(),
   ));
-  list.add(ServiceProviderModel(0, "Michel John", homeCleaner, "Home Clean", "3.5", "Hi", "120", "350", false, getProviderServices()));
-  list.add(ServiceProviderModel(0, "John carter", plumber, "Plumbers", "4.5", "Hi", "120", "250", false, getProviderServices()));
-  list.add(ServiceProviderModel(0, "Sammy jaine", electrician, "Electrician", "4.0", "Hi", "120", "310", false, getProviderServices()));
+  list.add(ServiceProviderModel(0, "Michel John", homeCleaner, "Home Clean",
+      "3.5", "Hi", "120", "350", false, getProviderServices()));
+  list.add(ServiceProviderModel(0, "John carter", plumber, "Plumbers", "4.5",
+      "Hi", "120", "250", false, getProviderServices()));
+  list.add(ServiceProviderModel(0, "Sammy jaine", electrician, "Electrician",
+      "4.0", "Hi", "120", "310", false, getProviderServices()));
   return list;
 }
 
 List<ServiceProviderModel> getElectricians() {
   List<ServiceProviderModel> list = List.empty(growable: true);
-  list.add(ServiceProviderModel(1, "Michel smith", electrician, "Electrician", "3.5", "Hi", "120", "250", false, getProviderServices()));
-  list.add(ServiceProviderModel(1, "Michel smith", painter1, "painter", "3.5", "Hi", "120", "150", false, getProviderServices()));
-  list.add(ServiceProviderModel(1, "John carter", homeCleaner, "Home Clean", "4.5", "Hi", "120", "220", false, getProviderServices()));
-  list.add(ServiceProviderModel(1, "Carry John", plumber, "plumber", "4.0", "Hi", "120", "220", false, getProviderServices()));
+  list.add(ServiceProviderModel(1, "Michel smith", electrician, "Electrician",
+      "3.5", "Hi", "120", "250", false, getProviderServices()));
+  list.add(ServiceProviderModel(1, "Michel smith", painter1, "painter", "3.5",
+      "Hi", "120", "150", false, getProviderServices()));
+  list.add(ServiceProviderModel(1, "John carter", homeCleaner, "Home Clean",
+      "4.5", "Hi", "120", "220", false, getProviderServices()));
+  list.add(ServiceProviderModel(1, "Carry John", plumber, "plumber", "4.0",
+      "Hi", "120", "220", false, getProviderServices()));
   return list;
 }
 
 List<ServiceProviderModel> getPainters() {
   List<ServiceProviderModel> list = List.empty(growable: true);
-  list.add(ServiceProviderModel(2, "Michel smith", painter, "Painters", "3.5", "Hi", "120", "450", false, getProviderServices()));
-  list.add(ServiceProviderModel(2, "Michel smith", painter1, "Painters", "3.5", "Hi", "120", "550", false, getProviderServices()));
-  list.add(ServiceProviderModel(2, "John carter", painter, "Painters", "4.5", "Hi", "120", "500", false, getProviderServices()));
-  list.add(ServiceProviderModel(2, "Carry John", painter, "Electrician", "4.0", "Hi", "120", "550", false, getProviderServices()));
+  list.add(ServiceProviderModel(2, "Michel smith", painter, "Painters", "3.5",
+      "Hi", "120", "450", false, getProviderServices()));
+  list.add(ServiceProviderModel(2, "Michel smith", painter1, "Painters", "3.5",
+      "Hi", "120", "550", false, getProviderServices()));
+  list.add(ServiceProviderModel(2, "John carter", painter, "Painters", "4.5",
+      "Hi", "120", "500", false, getProviderServices()));
+  list.add(ServiceProviderModel(2, "Carry John", painter, "Electrician", "4.0",
+      "Hi", "120", "550", false, getProviderServices()));
   return list;
 }
 
 List<ServiceProviderModel> getCarpenters() {
   List<ServiceProviderModel> list = List.empty(growable: true);
-  list.add(ServiceProviderModel(3, "Michel smith", carpenter, "Carpenters", "3.5", "Hi", "120", "150", false, getProviderServices()));
-  list.add(ServiceProviderModel(3, "Michel smith", carpenter, "Carpenters", "3.5", "Hi", "120", "100", false, getProviderServices()));
-  list.add(ServiceProviderModel(3, "John carter", carpenter, "Carpenters", "4.5", "Hi", "120", "250", false, getProviderServices()));
-  list.add(ServiceProviderModel(3, "Carry John", carpenter, "Carpenters", "4.0", "Hi", "120", "190", false, getProviderServices()));
+  list.add(ServiceProviderModel(3, "Michel smith", carpenter, "Carpenters",
+      "3.5", "Hi", "120", "150", false, getProviderServices()));
+  list.add(ServiceProviderModel(3, "Michel smith", carpenter, "Carpenters",
+      "3.5", "Hi", "120", "100", false, getProviderServices()));
+  list.add(ServiceProviderModel(3, "John carter", carpenter, "Carpenters",
+      "4.5", "Hi", "120", "250", false, getProviderServices()));
+  list.add(ServiceProviderModel(3, "Carry John", carpenter, "Carpenters", "4.0",
+      "Hi", "120", "190", false, getProviderServices()));
   return list;
 }
 
@@ -177,7 +202,8 @@ void addFavouriteProvider(int serviceIndex, int index) {
 
 void removeFavouriteProvider(int serviceIndex, int index) {
   for (int i = 0; i < likedProviders.length; i++) {
-    if (serviceProviders[serviceIndex].serviceProviders[index].name == likedProviders[i].name) {
+    if (serviceProviders[serviceIndex].serviceProviders[index].name ==
+        likedProviders[i].name) {
       likedProviders.removeAt(i);
     }
   }

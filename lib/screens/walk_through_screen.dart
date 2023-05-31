@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/utils/images.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../custom_widget/space.dart';
@@ -88,7 +88,9 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
               bottom: 0,
               left: 0,
               width: MediaQuery.of(context).size.width,
-              height: aspectRatio < 0.48 ? MediaQuery.of(context).size.height * 0.25 : MediaQuery.of(context).size.height * 0.40,
+              height: aspectRatio < 0.48
+                  ? MediaQuery.of(context).size.height * 0.25
+                  : MediaQuery.of(context).size.height * 0.40,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 clipBehavior: Clip.hardEdge,
@@ -123,7 +125,10 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                             Text(
                               list[currentPosition].title,
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: whiteColor, fontWeight: FontWeight.bold, fontSize: 28),
+                              style: TextStyle(
+                                  color: whiteColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 28),
                             ),
                             Space(16),
                             Text(
@@ -135,10 +140,12 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                         ),
                         Space(16),
                         Visibility(
-                          visible: currentPosition == list.length - 1 ? true : false,
+                          visible:
+                              currentPosition == list.length - 1 ? true : false,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: appData.isDark ? Colors.black : whiteColor,
+                              primary:
+                                  appData.isDark ? Colors.black : whiteColor,
                               onPrimary: blackColor,
                               shape: StadiumBorder(),
                               fixedSize: Size(360, 50),
@@ -148,28 +155,35 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
-                                color: appData.isDark ? Colors.white : Colors.black,
+                                color: appData.isDark
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
                             ),
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => SignInScreen()),
+                                MaterialPageRoute(
+                                    builder: (context) => SignInScreen()),
                               );
                             },
                           ),
                         ),
                         Visibility(
-                          visible: currentPosition == list.length - 1 ? false : true,
+                          visible:
+                              currentPosition == list.length - 1 ? false : true,
                           child: Align(
                             alignment: Alignment.bottomRight,
                             child: Padding(
                               padding: EdgeInsets.all(10),
                               child: IconButton(
                                 onPressed: () {
-                                  controller.animateToPage(currentPosition++, duration: Duration(milliseconds: 500), curve: Curves.linear);
+                                  controller.animateToPage(currentPosition++,
+                                      duration: Duration(milliseconds: 500),
+                                      curve: Curves.linear);
                                 },
-                                icon: Icon(Icons.arrow_circle_right_rounded, color: whiteColor, size: 50),
+                                icon: Icon(Icons.arrow_circle_right_rounded,
+                                    color: whiteColor, size: 50),
                               ),
                             ),
                           ),

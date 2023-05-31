@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/screens/active_bookings_screen.dart';
-import 'package:home_hub/screens/booking_history_screen.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/screens/active_bookings_screen.dart';
+import 'package:workflow_customer/screens/booking_history_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
 class BookingsFragment extends StatefulWidget {
   final bool fromProfile;

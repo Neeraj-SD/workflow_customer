@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/service_provider_model.dart';
-import 'package:home_hub/models/services_model.dart';
-import 'package:home_hub/screens/provider_services_screen.dart';
-import 'package:home_hub/utils/colors.dart';
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/service_provider_model.dart';
+import 'package:workflow_customer/models/services_model.dart';
+import 'package:workflow_customer/screens/provider_services_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
+import 'package:workflow_customer/utils/images.dart';
 
 class FavoriteServiceComponent extends StatefulWidget {
   final ServiceProviderModel? serviceProviderModel;
@@ -15,7 +15,8 @@ class FavoriteServiceComponent extends StatefulWidget {
   FavoriteServiceComponent(this.index, {this.serviceProviderModel});
 
   @override
-  State<FavoriteServiceComponent> createState() => _FavoriteServiceComponentState();
+  State<FavoriteServiceComponent> createState() =>
+      _FavoriteServiceComponentState();
 }
 
 class _FavoriteServiceComponentState extends State<FavoriteServiceComponent> {
@@ -101,7 +102,8 @@ class _FavoriteServiceComponentState extends State<FavoriteServiceComponent> {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 20),
                       ),
                       Space(4),
                       Text(
@@ -117,7 +119,8 @@ class _FavoriteServiceComponentState extends State<FavoriteServiceComponent> {
                           Icon(Icons.star, color: starIconColor, size: 16),
                           Text(
                             widget.serviceProviderModel!.star,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                         ],
                       ),
@@ -130,7 +133,11 @@ class _FavoriteServiceComponentState extends State<FavoriteServiceComponent> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text("", style: TextStyle(color: blueColor, fontWeight: FontWeight.bold, fontSize: 14)),
+                          Text("",
+                              style: TextStyle(
+                                  color: blueColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14)),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -140,12 +147,16 @@ class _FavoriteServiceComponentState extends State<FavoriteServiceComponent> {
                                 children: [
                                   Text(
                                     "₹${widget.serviceProviderModel!.perHourPrice}",
-                                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20),
                                   ),
                                   Text(
                                     "/hr ",
                                     textAlign: TextAlign.start,
-                                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 14),
                                   ),
                                 ],
                               ),
@@ -156,14 +167,20 @@ class _FavoriteServiceComponentState extends State<FavoriteServiceComponent> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ProviderServicesScreen(serviceIndex: widget.index, index: widget.index),
+                                      builder: (context) =>
+                                          ProviderServicesScreen(
+                                              serviceIndex: widget.index,
+                                              index: widget.index),
                                     ),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   shape: StadiumBorder(),
-                                  backgroundColor: appData.isDark ? Colors.grey.withOpacity(0.2) : Colors.black,
-                                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                                  backgroundColor: appData.isDark
+                                      ? Colors.grey.withOpacity(0.2)
+                                      : Colors.black,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 16, horizontal: 32),
                                   fixedSize: Size(140, 45),
                                 ),
                               ),

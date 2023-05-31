@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/models/renovate_services_model.dart';
-import 'package:home_hub/screens/service_screen.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/models/renovate_services_model.dart';
+import 'package:workflow_customer/screens/service_screen.dart';
 
 class RenovateHomeComponent extends StatelessWidget {
   @override
@@ -17,7 +17,9 @@ class RenovateHomeComponent extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ServiceScreen(index: index, fromRenovate: true)),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ServiceScreen(index: index, fromRenovate: true)),
               );
             },
             child: Padding(
@@ -31,7 +33,8 @@ class RenovateHomeComponent extends StatelessWidget {
                       child: SizedBox(
                         width: 160,
                         height: 100,
-                        child: Image.asset(renovateServices[index].imagePath!, fit: BoxFit.cover),
+                        child: Image.asset(renovateServices[index].imagePath!,
+                            fit: BoxFit.cover),
                       )),
                   Space(8),
                   Text(

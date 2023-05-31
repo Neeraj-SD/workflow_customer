@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:home_hub/components/combos_subscriptions_component.dart';
-import 'package:home_hub/components/customer_review_component.dart';
-import 'package:home_hub/components/home_contruction_component.dart';
-import 'package:home_hub/components/home_service_component.dart';
-import 'package:home_hub/components/popular_service_component.dart';
-import 'package:home_hub/components/renovate_home_component.dart';
-import 'package:home_hub/fragments/bookings_fragment.dart';
-import 'package:home_hub/models/customer_details_model.dart';
-import 'package:home_hub/screens/notification_screen.dart';
-import 'package:home_hub/screens/service_providers_screen.dart';
-import 'package:home_hub/screens/sign_in_screen.dart';
-import 'package:home_hub/utils/images.dart';
-import 'package:home_hub/utils/widgets.dart';
+import 'package:workflow_customer/components/combos_subscriptions_component.dart';
+import 'package:workflow_customer/components/customer_review_component.dart';
+import 'package:workflow_customer/components/home_contruction_component.dart';
+import 'package:workflow_customer/components/home_service_component.dart';
+import 'package:workflow_customer/components/popular_service_component.dart';
+import 'package:workflow_customer/components/renovate_home_component.dart';
+import 'package:workflow_customer/fragments/bookings_fragment.dart';
+import 'package:workflow_customer/models/customer_details_model.dart';
+import 'package:workflow_customer/screens/notification_screen.dart';
+import 'package:workflow_customer/screens/service_providers_screen.dart';
+import 'package:workflow_customer/screens/sign_in_screen.dart';
+import 'package:workflow_customer/utils/images.dart';
+import 'package:workflow_customer/utils/widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../custom_widget/space.dart';
@@ -35,8 +35,10 @@ class _HomeFragmentState extends State<HomeFragment> {
   double aspectRatio = 0.0;
   List<String> bannerList = [banner1, banner2, banner];
 
-  final offerPagesController = PageController(viewportFraction: 0.93, keepPage: true, initialPage: 1);
-  final reviewPagesController = PageController(viewportFraction: 0.93, keepPage: true, initialPage: 1);
+  final offerPagesController =
+      PageController(viewportFraction: 0.93, keepPage: true, initialPage: 1);
+  final reviewPagesController =
+      PageController(viewportFraction: 0.93, keepPage: true, initialPage: 1);
 
   @override
   void dispose() {
@@ -119,7 +121,8 @@ class _HomeFragmentState extends State<HomeFragment> {
           padding: EdgeInsets.all(0),
           children: [
             Container(
-              padding: EdgeInsets.only(left: 24, right: 24, top: 40, bottom: 24),
+              padding:
+                  EdgeInsets.only(left: 24, right: 24, top: 40, bottom: 24),
               color: appData.isDark ? Colors.black : Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +131,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                     padding: EdgeInsets.all(16),
                     child: Text(
                       "J",
-                      style: TextStyle(fontSize: 24.0, color: appData.isDark ? Colors.black : whiteColor),
+                      style: TextStyle(
+                          fontSize: 24.0,
+                          color: appData.isDark ? Colors.black : whiteColor),
                       textAlign: TextAlign.center,
                     ),
                     decoration: BoxDecoration(
@@ -139,7 +144,10 @@ class _HomeFragmentState extends State<HomeFragment> {
                   Space(4),
                   Text(
                     getName,
-                    style: TextStyle(fontSize: 18, color: appData.isDark ? whiteColor : Colors.black, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: appData.isDark ? whiteColor : Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
                   Space(4),
                   Text(getEmail, style: TextStyle(color: secondaryColor)),
@@ -151,7 +159,8 @@ class _HomeFragmentState extends State<HomeFragment> {
               drawerIcon: Icons.person,
               drawerOnTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfileScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyProfileScreen()));
               },
             ),
             drawerWidget(
@@ -159,14 +168,20 @@ class _HomeFragmentState extends State<HomeFragment> {
               drawerIcon: Icons.favorite,
               drawerOnTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => FavouriteProvidersScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FavouriteProvidersScreen()));
               },
             ),
             drawerWidget(
               drawerTitle: "Notifications",
               drawerIcon: Icons.notifications,
               drawerOnTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NotificationScreen()));
               },
             ),
             drawerWidget(
@@ -176,7 +191,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BookingsFragment(fromProfile: true)),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          BookingsFragment(fromProfile: true)),
                 );
               },
             ),
@@ -222,7 +239,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                   keyboardType: TextInputType.name,
                   style: TextStyle(fontSize: 17),
                   decoration: commonInputDecoration(
-                    suffixIcon: Icon(Icons.search, size: 20, color: appData.isDark ? Colors.white : Colors.black),
+                    suffixIcon: Icon(Icons.search,
+                        size: 20,
+                        color: appData.isDark ? Colors.white : Colors.black),
                     hintText: "Search for services",
                   ),
                 ),
@@ -239,14 +258,17 @@ class _HomeFragmentState extends State<HomeFragment> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ServiceProvidersScreen(index: index)),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ServiceProvidersScreen(index: index)),
                       );
                     },
                     child: Padding(
                       padding: EdgeInsets.all(8),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(bannerList[index], fit: BoxFit.cover),
+                        child:
+                            Image.asset(bannerList[index], fit: BoxFit.cover),
                       ),
                     ),
                   );
@@ -270,7 +292,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(list: serviceProviders, fromProviderDetails: false),
+                    builder: (context) => AllCategoriesScreen(
+                        list: serviceProviders, fromProviderDetails: false),
                   ),
                 );
               },
@@ -283,7 +306,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(list: serviceProviders, fromProviderDetails: false),
+                    builder: (context) => AllCategoriesScreen(
+                        list: serviceProviders, fromProviderDetails: false),
                   ),
                 );
               },
@@ -296,7 +320,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(list: serviceProviders, fromProviderDetails: false),
+                    builder: (context) => AllCategoriesScreen(
+                        list: serviceProviders, fromProviderDetails: false),
                   ),
                 );
               },
@@ -310,7 +335,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(list: serviceProviders, fromProviderDetails: false),
+                    builder: (context) => AllCategoriesScreen(
+                        list: serviceProviders, fromProviderDetails: false),
                   ),
                 );
               },
@@ -324,7 +350,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(list: serviceProviders, fromProviderDetails: false),
+                    builder: (context) => AllCategoriesScreen(
+                        list: serviceProviders, fromProviderDetails: false),
                   ),
                 );
               },
@@ -350,7 +377,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                 controller: reviewPagesController,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return CustomerReviewComponent(customerReviewModel: customerReviews[index]);
+                  return CustomerReviewComponent(
+                      customerReviewModel: customerReviews[index]);
                 },
               ),
             ),

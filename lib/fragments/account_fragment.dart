@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/fragments/bookings_fragment.dart';
-import 'package:home_hub/models/customer_details_model.dart';
-import 'package:home_hub/screens/favourite_services_screen.dart';
-import 'package:home_hub/screens/my_profile_screen.dart';
-import 'package:home_hub/screens/notification_screen.dart';
-import 'package:home_hub/utils/colors.dart';
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/fragments/bookings_fragment.dart';
+import 'package:workflow_customer/models/customer_details_model.dart';
+import 'package:workflow_customer/screens/favourite_services_screen.dart';
+import 'package:workflow_customer/screens/my_profile_screen.dart';
+import 'package:workflow_customer/screens/notification_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
+import 'package:workflow_customer/utils/images.dart';
 
 import '../custom_widget/space.dart';
 
@@ -35,11 +35,18 @@ class _AccountFragmentState extends State<AccountFragment> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 90, width: 90, child: CircleAvatar(backgroundImage: AssetImage(userImage))),
+            SizedBox(
+                height: 90,
+                width: 90,
+                child: CircleAvatar(backgroundImage: AssetImage(userImage))),
             Space(8),
-            Text(getName, textAlign: TextAlign.start, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
+            Text(getName,
+                textAlign: TextAlign.start,
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
             Space(4),
-            Text(getEmail, textAlign: TextAlign.start, style: TextStyle(color: secondaryColor, fontSize: 12)),
+            Text(getEmail,
+                textAlign: TextAlign.start,
+                style: TextStyle(color: secondaryColor, fontSize: 12)),
             Space(16),
             ListTile(
               horizontalTitleGap: 4,
@@ -48,22 +55,23 @@ class _AccountFragmentState extends State<AccountFragment> {
               title: Text("My Profile"),
               trailing: Icon(Icons.edit, size: 16),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfileScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyProfileScreen()));
               },
             ),
-            
-            
             ListTile(
               horizontalTitleGap: 4,
               contentPadding: EdgeInsets.symmetric(horizontal: 16),
               leading: Icon(Icons.calendar_month, size: 20),
               title: Text("My bookings"),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => BookingsFragment(fromProfile: true)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            BookingsFragment(fromProfile: true)));
               },
             ),
-            
-           
             Space(16),
           ],
         ),

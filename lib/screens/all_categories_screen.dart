@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/screens/provider_review_screen.dart';
-import 'package:home_hub/screens/service_providers_screen.dart';
-import 'package:home_hub/screens/service_screen.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/screens/provider_review_screen.dart';
+import 'package:workflow_customer/screens/service_providers_screen.dart';
+import 'package:workflow_customer/screens/service_screen.dart';
 
 import '../custom_widget/space.dart';
 import '../models/services_model.dart';
@@ -13,7 +13,9 @@ class AllCategoriesScreen extends StatefulWidget {
   final List<dynamic> list;
   final bool fromProviderDetails;
 
-  const AllCategoriesScreen({Key? key, required this.list, required this.fromProviderDetails}) : super(key: key);
+  const AllCategoriesScreen(
+      {Key? key, required this.list, required this.fromProviderDetails})
+      : super(key: key);
 
   @override
   State<AllCategoriesScreen> createState() => _AllCategoriesScreenState();
@@ -89,7 +91,8 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
         slivers: [
           SliverAppBar(
             pinned: true,
-            backgroundColor: appData.isDark ? customAppbarColorDark : customAppbarColor,
+            backgroundColor:
+                appData.isDark ? customAppbarColorDark : customAppbarColor,
             expandedHeight: MediaQuery.of(context).size.height * 0.35,
             leading: IconButton(
               icon: Icon(Icons.arrow_back, color: _iconColor),
@@ -97,15 +100,18 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                 Navigator.pop(context);
               },
             ),
-            flexibleSpace: FlexibleSpaceBar(background: Image.asset(room, fit: BoxFit.cover)),
+            flexibleSpace: FlexibleSpaceBar(
+                background: Image.asset(room, fit: BoxFit.cover)),
             centerTitle: true,
             title: Text(
               "All Categories",
               textAlign: TextAlign.center,
-              style: TextStyle(color: _textColor, fontWeight: FontWeight.w900, fontSize: 20),
+              style: TextStyle(
+                  color: _textColor, fontWeight: FontWeight.w900, fontSize: 20),
             ),
           ),
-          SliverToBoxAdapter(child: Container(padding: EdgeInsets.only(top: 10))),
+          SliverToBoxAdapter(
+              child: Container(padding: EdgeInsets.only(top: 10))),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: widget.list.length,
@@ -117,18 +123,24 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                       if (widget.list == serviceProviders) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ServiceProvidersScreen(index: index)),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ServiceProvidersScreen(index: index)),
                         );
                       } else {
                         if (widget.fromProviderDetails) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ProviderReview(index: index)),
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ProviderReview(index: index)),
                           );
                         } else {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ServiceScreen(index: index)),
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ServiceScreen(index: index)),
                           );
                         }
                       }
@@ -141,13 +153,15 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(_setImage(index), width: 90, height: 90, fit: BoxFit.cover),
+                            child: Image.asset(_setImage(index),
+                                width: 90, height: 90, fit: BoxFit.cover),
                           ),
                           Space(16),
                           Text(
                             _setTitle(index),
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900, fontSize: 16),
                           ),
                         ],
                       ),

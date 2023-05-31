@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/models/customer_review_model.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/models/customer_review_model.dart';
+import 'package:workflow_customer/utils/colors.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class CustomerReviewComponent extends StatelessWidget {
@@ -25,13 +25,15 @@ class CustomerReviewComponent extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     maxRadius: 20,
-                    backgroundImage: AssetImage(customerReviewModel!.customerImage),
+                    backgroundImage:
+                        AssetImage(customerReviewModel!.customerImage),
                   ),
                   Space(8),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(customerReviewModel!.customerName, style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(customerReviewModel!.customerName,
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                       Space(4),
                       SmoothStarRating(
                         allowHalfRating: false,

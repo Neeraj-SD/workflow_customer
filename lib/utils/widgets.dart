@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/models/last_bookings_model.dart';
-import 'package:home_hub/screens/dashboard_screen.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/models/last_bookings_model.dart';
+import 'package:workflow_customer/screens/dashboard_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
-InputDecoration commonInputDecoration({String? hintText, Widget? prefixIcon, Widget? suffixIcon}) {
+InputDecoration commonInputDecoration(
+    {String? hintText, Widget? prefixIcon, Widget? suffixIcon}) {
   return InputDecoration(
     filled: true,
     fillColor: textFieldColor,
@@ -12,7 +13,8 @@ InputDecoration commonInputDecoration({String? hintText, Widget? prefixIcon, Wid
     suffixIcon: suffixIcon,
     hintStyle: TextStyle(color: hintTextColor, fontSize: 16),
     contentPadding: EdgeInsets.symmetric(horizontal: 16),
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
+    border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
   );
 }
 
@@ -26,11 +28,15 @@ Widget homeTitleWidget({
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(titleText!, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
+        Text(titleText!,
+            style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
         TextButton(
           child: Text(
             viewAllText ?? "View All",
-            style: TextStyle(color: viewAllColor, fontSize: 16, fontWeight: FontWeight.normal),
+            style: TextStyle(
+                color: viewAllColor,
+                fontSize: 16,
+                fontWeight: FontWeight.normal),
           ),
           onPressed: onAllTap!,
         ),
@@ -39,7 +45,8 @@ Widget homeTitleWidget({
   );
 }
 
-Widget drawerWidget({String? drawerTitle, Function()? drawerOnTap, IconData? drawerIcon}) {
+Widget drawerWidget(
+    {String? drawerTitle, Function()? drawerOnTap, IconData? drawerIcon}) {
   return ListTile(
     horizontalTitleGap: 0,
     visualDensity: VisualDensity.compact,
@@ -67,7 +74,10 @@ Future<void> showAlertDialog(BuildContext context, {int? index}) async {
             child: Text('Yes'),
             onPressed: () {
               againBooking(index!);
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => DashBoardScreen()), (route) => false);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => DashBoardScreen()),
+                  (route) => false);
             },
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/components/favorite_service_component.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/components/favorite_service_component.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
 import '../models/service_provider_model.dart';
 
@@ -8,7 +8,8 @@ class FavouriteProvidersScreen extends StatefulWidget {
   const FavouriteProvidersScreen({Key? key}) : super(key: key);
 
   @override
-  State<FavouriteProvidersScreen> createState() => _FavouriteProvidersScreenState();
+  State<FavouriteProvidersScreen> createState() =>
+      _FavouriteProvidersScreenState();
 }
 
 class _FavouriteProvidersScreenState extends State<FavouriteProvidersScreen> {

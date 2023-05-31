@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/screens/dashboard_screen.dart';
-import 'package:home_hub/utils/colors.dart';
-import 'package:home_hub/utils/constant.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/screens/dashboard_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
+import 'package:workflow_customer/utils/constant.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
   const OTPVerificationScreen({Key? key}) : super(key: key);
@@ -29,7 +29,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: transparent,
-        iconTheme: IconThemeData(color: appData.isDark ? whiteColor : blackColor),
+        iconTheme:
+            IconThemeData(color: appData.isDark ? whiteColor : blackColor),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
@@ -44,10 +45,13 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                 children: [
                   Text(
                     "OTP Verification",
-                    style: TextStyle(fontSize: mainTitleTextSize, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: mainTitleTextSize,
+                        fontWeight: FontWeight.bold),
                   ),
                   Space(16),
-                  Text("We have sent OTP to your mobile number", style: TextStyle(fontSize: 16, color: subTitle)),
+                  Text("We have sent OTP to your mobile number",
+                      style: TextStyle(fontSize: 16, color: subTitle)),
                 ],
               ),
             ),
@@ -70,7 +74,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                             LengthLimitingTextInputFormatter(1),
                             FilteringTextInputFormatter.digitsOnly,
                           ],
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             filled: true,
@@ -79,7 +84,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none,
                             ),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
                           ),
                           onChanged: (value) {
                             if (value.length == 1) {
@@ -100,7 +106,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                               LengthLimitingTextInputFormatter(1),
                               FilteringTextInputFormatter.digitsOnly,
                             ],
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -109,7 +116,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                             ),
                             onChanged: (value) {
                               if (value.length == 1) {
@@ -129,8 +137,12 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
-                            inputFormatters: [LengthLimitingTextInputFormatter(1), FilteringTextInputFormatter.digitsOnly],
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -139,7 +151,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                             ),
                             onChanged: (value) {
                               if (value.length == 1) {
@@ -159,8 +172,12 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.done,
-                            inputFormatters: [LengthLimitingTextInputFormatter(1), FilteringTextInputFormatter.digitsOnly],
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                               filled: true,
@@ -169,7 +186,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                             ),
                             onChanged: (value) {
                               if (value.isEmpty) {
@@ -185,7 +203,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Didn't receive OTP?", style: TextStyle(fontSize: 16, color: subText)),
+                      Text("Didn't receive OTP?",
+                          style: TextStyle(fontSize: 16, color: subText)),
                       Space(4),
                       GestureDetector(
                         onTap: () {
@@ -193,7 +212,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         },
                         child: Text(
                           "Resend OTP",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: orangeColor),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: orangeColor),
                         ),
                       ),
                     ],
@@ -210,13 +232,15 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => DashBoardScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => DashBoardScreen()),
                           (route) => false,
                         );
                       },
                       child: Text(
                         "Submit",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ),
                   ),

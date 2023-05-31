@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/services_model.dart';
-import 'package:home_hub/screens/service_screen.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/services_model.dart';
+import 'package:workflow_customer/screens/service_screen.dart';
 
 import '../custom_widget/space.dart';
 import '../utils/colors.dart';
@@ -11,7 +11,9 @@ class ProviderServicesScreen extends StatefulWidget {
   final int serviceIndex;
   final int index;
 
-  const ProviderServicesScreen({Key? key, required this.index, required this.serviceIndex}) : super(key: key);
+  const ProviderServicesScreen(
+      {Key? key, required this.index, required this.serviceIndex})
+      : super(key: key);
 
   @override
   State<ProviderServicesScreen> createState() => _ProviderServicesScreenState();
@@ -67,10 +69,13 @@ class _ProviderServicesScreenState extends State<ProviderServicesScreen> {
                 Expanded(
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      fixedSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height * 0.06),
+                      fixedSize: Size(MediaQuery.of(context).size.width,
+                          MediaQuery.of(context).size.height * 0.06),
                       foregroundColor: appData.isDark ? whiteColor : blackColor,
                       shape: StadiumBorder(),
-                      side: BorderSide(color: appData.isDark ? whiteColor : blackColor, width: 1),
+                      side: BorderSide(
+                          color: appData.isDark ? whiteColor : blackColor,
+                          width: 1),
                     ),
                     child: Icon(Icons.message_rounded),
                     onPressed: () {
@@ -82,16 +87,22 @@ class _ProviderServicesScreenState extends State<ProviderServicesScreen> {
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height * 0.06),
+                      fixedSize: Size(MediaQuery.of(context).size.width,
+                          MediaQuery.of(context).size.height * 0.06),
                       shape: StadiumBorder(),
                     ),
-                    child: Text("Book", style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: Text("Book",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ServiceScreen(
-                            index: serviceProviders[widget.serviceIndex].serviceProviders[widget.index].providerServices.length - 1,
+                            index: serviceProviders[widget.serviceIndex]
+                                    .serviceProviders[widget.index]
+                                    .providerServices
+                                    .length -
+                                1,
                             fromBooking: true,
                             serviceIndex: widget.serviceIndex,
                             providerIndex: widget.index,
@@ -119,12 +130,14 @@ class _ProviderServicesScreenState extends State<ProviderServicesScreen> {
               },
             ),
             expandedHeight: MediaQuery.of(context).size.height * 0.35,
-            flexibleSpace: FlexibleSpaceBar(background: Image.asset(room, fit: BoxFit.cover)),
+            flexibleSpace: FlexibleSpaceBar(
+                background: Image.asset(room, fit: BoxFit.cover)),
             centerTitle: true,
             title: Text(
               "Home Cleaning",
               textAlign: TextAlign.center,
-              style: TextStyle(color: _textColor, fontWeight: FontWeight.w900, fontSize: 20),
+              style: TextStyle(
+                  color: _textColor, fontWeight: FontWeight.w900, fontSize: 20),
             ),
           ),
           SliverToBoxAdapter(
@@ -134,7 +147,10 @@ class _ProviderServicesScreenState extends State<ProviderServicesScreen> {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              childCount: serviceProviders[widget.serviceIndex].serviceProviders[widget.index].providerServices.length,
+              childCount: serviceProviders[widget.serviceIndex]
+                  .serviceProviders[widget.index]
+                  .providerServices
+                  .length,
               (context, index) {
                 return GestureDetector(
                   onTap: () {
@@ -153,14 +169,18 @@ class _ProviderServicesScreenState extends State<ProviderServicesScreen> {
                     color: transparent,
                     elevation: 0,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
-                              serviceProviders[widget.serviceIndex].serviceProviders[widget.index].providerServices[index].serviceImage,
+                              serviceProviders[widget.serviceIndex]
+                                  .serviceProviders[widget.index]
+                                  .providerServices[index]
+                                  .serviceImage,
                               width: 90,
                               height: 90,
                               fit: BoxFit.cover,
@@ -172,13 +192,20 @@ class _ProviderServicesScreenState extends State<ProviderServicesScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                serviceProviders[widget.serviceIndex].serviceProviders[widget.index].providerServices[index].serviceName,
-                                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
+                                serviceProviders[widget.serviceIndex]
+                                    .serviceProviders[widget.index]
+                                    .providerServices[index]
+                                    .serviceName,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w900, fontSize: 18),
                               ),
                               Space(4),
                               Text(
                                 "Rs.${serviceProviders[widget.serviceIndex].serviceProviders[widget.index].providerServices[index].servicePrice} onwards",
-                                style: TextStyle(color: greyColor, fontWeight: FontWeight.w900, fontSize: 12),
+                                style: TextStyle(
+                                    color: greyColor,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 12),
                               ),
                             ],
                           ),
@@ -193,7 +220,8 @@ class _ProviderServicesScreenState extends State<ProviderServicesScreen> {
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.all(10.0),
-              child: SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+              child:
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.07),
             ),
           )
         ],

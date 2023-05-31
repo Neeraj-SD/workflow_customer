@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/components/search_component.dart';
-import 'package:home_hub/utils/widgets.dart';
+import 'package:workflow_customer/components/search_component.dart';
+import 'package:workflow_customer/utils/widgets.dart';
 
 import '../models/services_model.dart';
 import '../utils/colors.dart';
@@ -50,7 +50,8 @@ class _SearchFragmentState extends State<SearchFragment> {
               physics: NeverScrollableScrollPhysics(),
               itemCount: serviceProviders.length,
               itemBuilder: (context, index) {
-                return SearchComponent(index, servicesModel: serviceProviders[index]);
+                return SearchComponent(index,
+                    servicesModel: serviceProviders[index]);
               },
             )
           ],

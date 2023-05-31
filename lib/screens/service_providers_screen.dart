@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/screens/provider_detail_screen.dart';
-import 'package:home_hub/screens/provider_services_screen.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/screens/provider_detail_screen.dart';
+import 'package:workflow_customer/screens/provider_services_screen.dart';
 
 import '../custom_widget/space.dart';
 import '../models/services_model.dart';
@@ -11,7 +11,8 @@ import '../utils/images.dart';
 class ServiceProvidersScreen extends StatefulWidget {
   final int index;
 
-  const ServiceProvidersScreen({Key? key, required this.index}) : super(key: key);
+  const ServiceProvidersScreen({Key? key, required this.index})
+      : super(key: key);
 
   @override
   State<ServiceProvidersScreen> createState() => _ServiceProvidersScreenState();
@@ -22,7 +23,8 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ProviderDetailScreen(serviceIndex: widget.index, index: index),
+        builder: (context) =>
+            ProviderDetailScreen(serviceIndex: widget.index, index: index),
       ),
     );
     if (result) {
@@ -37,11 +39,15 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: transparent,
-        iconTheme: IconThemeData(color: appData.isDark ? whiteColor : blackColor),
+        iconTheme:
+            IconThemeData(color: appData.isDark ? whiteColor : blackColor),
         title: Text(
           "Service Providers",
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18, color: appData.isDark ? whiteColor : blackColor),
+          style: TextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: 18,
+              color: appData.isDark ? whiteColor : blackColor),
         ),
       ),
       body: ListView.builder(
@@ -58,7 +64,9 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
               margin: EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: appData.isDark ? Colors.black : Colors.grey.withOpacity(0.2),
+                color: appData.isDark
+                    ? Colors.black
+                    : Colors.grey.withOpacity(0.2),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +77,9 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          serviceProviders[widget.index].serviceProviders[index].providerImage,
+                          serviceProviders[widget.index]
+                              .serviceProviders[index]
+                              .providerImage,
                           width: 100,
                           height: 150,
                           fit: BoxFit.cover,
@@ -91,7 +101,9 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
                               child: SizedBox(
                                 height: 16,
                                 width: 16,
-                                child: serviceProviders[widget.index].serviceProviders[index].isLiked
+                                child: serviceProviders[widget.index]
+                                        .serviceProviders[index]
+                                        .isLiked
                                     ? Icon(
                                         Icons.favorite,
                                         size: 18,
@@ -115,15 +127,20 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              serviceProviders[widget.index].serviceProviders[index].name,
+                              serviceProviders[widget.index]
+                                  .serviceProviders[index]
+                                  .name,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               textAlign: TextAlign.start,
-                              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900, fontSize: 20),
                             ),
                             Space(4),
                             Text(
-                              serviceProviders[widget.index].serviceProviders[index].occupation,
+                              serviceProviders[widget.index]
+                                  .serviceProviders[index]
+                                  .occupation,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               textAlign: TextAlign.start,
@@ -132,10 +149,15 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
                             Space(4),
                             Row(
                               children: [
-                                Icon(Icons.star, color: starIconColor, size: 16),
+                                Icon(Icons.star,
+                                    color: starIconColor, size: 16),
                                 Text(
-                                  serviceProviders[widget.index].serviceProviders[index].star,
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                  serviceProviders[widget.index]
+                                      .serviceProviders[index]
+                                      .star,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
                                 ),
                               ],
                             ),
@@ -154,34 +176,48 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Text(
                                           "₹${serviceProviders[widget.index].serviceProviders[index].perHourPrice}",
-                                          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20),
                                         ),
                                         Text(
                                           "/hr ",
                                           textAlign: TextAlign.start,
-                                          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 14),
                                         ),
                                       ],
                                     ),
                                     Space(8),
                                     ElevatedButton(
-                                      child: Text("Book", textAlign: TextAlign.center, style: TextStyle(color: Colors.white)),
+                                      child: Text("Book",
+                                          textAlign: TextAlign.center,
+                                          style:
+                                              TextStyle(color: Colors.white)),
                                       onPressed: () {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => ProviderServicesScreen(serviceIndex: widget.index, index: index),
+                                            builder: (context) =>
+                                                ProviderServicesScreen(
+                                                    serviceIndex: widget.index,
+                                                    index: index),
                                           ),
                                         );
                                       },
                                       style: ElevatedButton.styleFrom(
                                         shape: StadiumBorder(),
-                                        backgroundColor: appData.isDark ? Colors.grey.withOpacity(0.2) : Colors.black,
-                                        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                                        backgroundColor: appData.isDark
+                                            ? Colors.grey.withOpacity(0.2)
+                                            : Colors.black,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 16, horizontal: 32),
                                         fixedSize: Size(140, 50),
                                       ),
                                     ),

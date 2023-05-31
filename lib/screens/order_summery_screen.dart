@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import './models/active_bookings_model.dart';
-import './models/combos_services_model.dart';
-import './models/renovate_services_model.dart';
-import './screens/payment_screen.dart';
+import 'package:workflow_customer/models/active_bookings_model.dart';
+import 'package:workflow_customer/models/combos_services_model.dart';
+import 'package:workflow_customer/models/renovate_services_model.dart';
+import 'package:workflow_customer/screens/payment_screen.dart';
 
 import '../custom_widget/space.dart';
 import '../main.dart';

@@ -1,4 +1,4 @@
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/utils/images.dart';
 
 List<UpiPayment> upiPaymentData = upiPaymentList();
 

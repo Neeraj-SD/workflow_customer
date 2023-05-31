@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/screens/otp_verification_screen.dart';
-import 'package:home_hub/screens/sign_in_screen.dart';
-import 'package:home_hub/utils/constant.dart';
-import 'package:home_hub/utils/widgets.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/screens/otp_verification_screen.dart';
+import 'package:workflow_customer/screens/sign_in_screen.dart';
+import 'package:workflow_customer/utils/constant.dart';
+import 'package:workflow_customer/utils/widgets.dart';
 
 import '../custom_widget/space.dart';
 import '../utils/colors.dart';
@@ -46,7 +46,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         return AlertDialog(
           title: Text('Alert'),
           content: SingleChildScrollView(
-            child: ListBody(zchildren: [Text('Please agree the terms and conditions')]),
+            child: ListBody(
+                children: [Text('Please agree the terms and conditions')]),
           ),
           actions: [
             TextButton(
@@ -78,7 +79,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Center(
                 child: Text(
                   "Sign Up",
-                  style: TextStyle(fontSize: mainTitleTextSize, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: mainTitleTextSize, fontWeight: FontWeight.bold),
                 ),
               ),
               Space(60),
@@ -106,7 +108,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textInputAction: TextInputAction.next,
                       inputFormatters: [LengthLimitingTextInputFormatter(10)],
                       style: TextStyle(fontSize: 20),
-                      decoration: commonInputDecoration(hintText: "Mobile Number"),
+                      decoration:
+                          commonInputDecoration(hintText: "Mobile Number"),
                     ),
                     Space(16),
                     TextFormField(
@@ -120,7 +123,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         suffixIcon: Padding(
                           padding: EdgeInsets.only(right: 5.0),
                           child: IconButton(
-                            icon: Icon(_securePassword ? Icons.visibility_off : Icons.visibility, size: 18),
+                            icon: Icon(
+                                _securePassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                size: 18),
                             onPressed: () {
                               _securePassword = !_securePassword;
                               setState(() {});
@@ -142,7 +149,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         suffixIcon: Padding(
                           padding: EdgeInsets.only(right: 5.0),
                           child: IconButton(
-                            icon: Icon(_secureConfirmPassword ? Icons.visibility_off : Icons.visibility, size: 18),
+                            icon: Icon(
+                                _secureConfirmPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                size: 18),
                             onPressed: () {
                               _secureConfirmPassword = !_secureConfirmPassword;
                               setState(() {});
@@ -153,12 +164,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Space(16),
                     Theme(
-                      data: ThemeData(unselectedWidgetColor: appData.isDark ? Colors.white : blackColor),
+                      data: ThemeData(
+                          unselectedWidgetColor:
+                              appData.isDark ? Colors.white : blackColor),
                       child: CheckboxListTile(
                         contentPadding: EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
                         activeColor: Colors.black,
-                        title: Text("I agree to the Terms and Conditions", style: TextStyle(fontWeight: FontWeight.normal)),
+                        title: Text("I agree to the Terms and Conditions",
+                            style: TextStyle(fontWeight: FontWeight.normal)),
                         value: checkBoxValue,
                         dense: true,
                         onChanged: (newValue) {
@@ -177,34 +192,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           padding: EdgeInsets.all(16),
                           textStyle: TextStyle(fontSize: 25),
                           shape: StadiumBorder(),
-                          backgroundColor: appData.isDark ? Colors.grey.withOpacity(0.2) : Colors.black,
+                          backgroundColor: appData.isDark
+                              ? Colors.grey.withOpacity(0.2)
+                              : Colors.black,
                         ),
                         onPressed: () {
                           if (_signUpFormKey.currentState!.validate()) {
                             if (agreeWithTeams == true) {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => OTPVerificationScreen()),
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        OTPVerificationScreen()),
                               );
                             } else {
                               _showAlertDialog();
                             }
                           }
                         },
-                        child: Text("Sign Up", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)),
+                        child: Text("Sign Up",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.white)),
                       ),
                     ),
                     Space(20),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignInScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignInScreen()));
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Have an account?", style: TextStyle(fontSize: 16)),
+                          Text("Have an account?",
+                              style: TextStyle(fontSize: 16)),
                           Space(4),
-                          Text('Sign In', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          Text('Sign In',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16)),
                         ],
                       ),
                     )

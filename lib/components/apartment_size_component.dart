@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/apartment_size_model.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/apartment_size_model.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
 class ApartmentSizeComponent extends StatefulWidget {
   @override
@@ -59,7 +59,10 @@ class _ApartmentSizeComponentState extends State<ApartmentSizeComponent> {
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: Text(
                 apartmentSizeList[index].size,
-                style: TextStyle(color: apartmentSizeList[index].isSelected ? whiteColor : blackColor),
+                style: TextStyle(
+                    color: apartmentSizeList[index].isSelected
+                        ? whiteColor
+                        : blackColor),
               ),
             ),
           ),

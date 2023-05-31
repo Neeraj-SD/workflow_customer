@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/screens/service_providers_screen.dart';
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/screens/service_providers_screen.dart';
+import 'package:workflow_customer/utils/images.dart';
 
 class PopularServiceComponent extends StatefulWidget {
   @override
-  _PopularServiceComponentState createState() => _PopularServiceComponentState();
+  _PopularServiceComponentState createState() =>
+      _PopularServiceComponentState();
 }
 
 class _PopularServiceComponentState extends State<PopularServiceComponent> {
@@ -38,7 +39,8 @@ class _PopularServiceComponentState extends State<PopularServiceComponent> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ServiceProvidersScreen(index: index)),
+                MaterialPageRoute(
+                    builder: (context) => ServiceProvidersScreen(index: index)),
               );
             },
             child: Padding(

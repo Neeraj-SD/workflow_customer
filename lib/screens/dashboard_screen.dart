@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/fragments/account_fragment.dart';
-import 'package:home_hub/fragments/bookings_fragment.dart';
-import 'package:home_hub/fragments/home_fragment.dart';
-import 'package:home_hub/fragments/search_fragment.dart';
+import 'package:workflow_customer/fragments/account_fragment.dart';
+import 'package:workflow_customer/fragments/bookings_fragment.dart';
+import 'package:workflow_customer/fragments/home_fragment.dart';
+import 'package:workflow_customer/fragments/search_fragment.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({Key? key}) : super(key: key);

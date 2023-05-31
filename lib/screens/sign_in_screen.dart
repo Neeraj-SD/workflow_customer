@@ -1,10 +1,10 @@
 import 'package:country_calling_code_picker/picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home_hub/screens/otp_verification_screen.dart';
-import 'package:home_hub/screens/sign_up_screen.dart';
-import 'package:home_hub/utils/constant.dart';
-import 'package:home_hub/utils/widgets.dart';
+import 'package:workflow_customer/screens/otp_verification_screen.dart';
+import 'package:workflow_customer/screens/sign_up_screen.dart';
+import 'package:workflow_customer/utils/constant.dart';
+import 'package:workflow_customer/utils/widgets.dart';
 
 import '../custom_widget/space.dart';
 import '../main.dart';
@@ -64,7 +64,9 @@ class _SignInScreenState extends State<SignInScreen> {
     screenWidth = MediaQuery.of(context).size.width;
 
     return AnnotatedRegion(
-      value: SystemUiOverlayStyle(statusBarIconBrightness: appData.isDark ? Brightness.light : Brightness.dark),
+      value: SystemUiOverlayStyle(
+          statusBarIconBrightness:
+              appData.isDark ? Brightness.light : Brightness.dark),
       child: Scaffold(
         body: SingleChildScrollView(
           padding: EdgeInsets.all(20.0),
@@ -76,11 +78,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Space(60),
-                  Text("Welcome back!", style: TextStyle(fontSize: mainTitleTextSize, fontWeight: FontWeight.bold)),
+                  Text("Welcome back!",
+                      style: TextStyle(
+                          fontSize: mainTitleTextSize,
+                          fontWeight: FontWeight.bold)),
                   Space(8),
-                  Text("Please Login to your account", style: TextStyle(fontSize: 14, color: subTitle)),
+                  Text("Please Login to your account",
+                      style: TextStyle(fontSize: 14, color: subTitle)),
                   Space(16),
-                  Image.asset(splash_logo, width: 100, height: 100, fit: BoxFit.cover),
+                  Image.asset(splash_logo,
+                      width: 100, height: 100, fit: BoxFit.cover),
                 ],
               ),
               Space(70),
@@ -97,8 +104,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: GestureDetector(
                         onTap: () => _showCountryPicker(),
                         child: Text(
-                          _selectedCountry == null ? "+91" : _selectedCountry!.callingCode,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                          _selectedCountry == null
+                              ? "+91"
+                              : _selectedCountry!.callingCode,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                       ),
                     ),
@@ -113,17 +123,24 @@ class _SignInScreenState extends State<SignInScreen> {
                     padding: EdgeInsets.all(16),
                     textStyle: TextStyle(fontSize: 16),
                     shape: StadiumBorder(),
-                    backgroundColor: appData.isDark ? Colors.grey.withOpacity(0.2) : Colors.black,
+                    backgroundColor: appData.isDark
+                        ? Colors.grey.withOpacity(0.2)
+                        : Colors.black,
                   ),
                   onPressed: () {
                     if (_loginFormKey.currentState!.validate()) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => OTPVerificationScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => OTPVerificationScreen()),
                       );
                     }
                   },
-                  child: Text("Log In", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white)),
+                  child: Text("Log In",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.white)),
                 ),
               ),
               Space(32),
@@ -131,12 +148,21 @@ class _SignInScreenState extends State<SignInScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
                   children: [
-                    Expanded(child: Divider(thickness: 1.2, color: Colors.grey.withOpacity(0.2))),
+                    Expanded(
+                        child: Divider(
+                            thickness: 1.2,
+                            color: Colors.grey.withOpacity(0.2))),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-                      child: Text("Or Login With", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+                      child: Text("Or Login With",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16)),
                     ),
-                    Expanded(child: Divider(thickness: 1.2, color: Colors.grey.withOpacity(0.2))),
+                    Expanded(
+                        child: Divider(
+                            thickness: 1.2,
+                            color: Colors.grey.withOpacity(0.2))),
                   ],
                 ),
               ),
@@ -144,22 +170,29 @@ class _SignInScreenState extends State<SignInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(icGoogle, scale: 24, color: appData.isDark ? blackColor : blackColor),
+                  Image.asset(icGoogle,
+                      scale: 24,
+                      color: appData.isDark ? blackColor : blackColor),
                   Space(40),
-                  Image.asset(icInstagram, scale: 24, color: appData.isDark ? blackColor : blackColor),
+                  Image.asset(icInstagram,
+                      scale: 24,
+                      color: appData.isDark ? blackColor : blackColor),
                 ],
               ),
               Space(32),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUpScreen()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Don't have account?", style: TextStyle(fontSize: 16)),
                     Space(4),
-                    Text('Sign Up', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    Text('Sign Up',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16)),
                   ],
                 ),
               )

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:home_hub/components/apartment_size_component.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/active_bookings_model.dart';
-import 'package:home_hub/models/combos_services_model.dart';
-import 'package:home_hub/models/renovate_services_model.dart';
-import 'package:home_hub/utils/date.dart' as date;
-import 'package:home_hub/utils/widgets.dart';
+import 'package:workflow_customer/components/apartment_size_component.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/active_bookings_model.dart';
+import 'package:workflow_customer/models/combos_services_model.dart';
+import 'package:workflow_customer/models/renovate_services_model.dart';
+import 'package:workflow_customer/utils/date.dart' as date;
+import 'package:workflow_customer/utils/widgets.dart';
 
 import '../custom_widget/space.dart';
 import '../models/services_model.dart';
@@ -68,7 +68,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
     selectedMonth = date.DateUtils.months[currentDateTime.month - 1];
     selectedMonthShort = date.DateUtils.monthShort[currentDateTime.month - 1];
     selectedYear = currentDateTime.year.toString();
-    selectedDate = "${currentDateTime.day.toString()} $selectedMonthShort,$selectedYear";
+    selectedDate =
+        "${currentDateTime.day.toString()} $selectedMonthShort,$selectedYear";
     monthIndex = currentDateTime.month - 1;
     _scrollController = ScrollController()
       ..addListener(() {
@@ -132,7 +133,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
               height: MediaQuery.of(context).size.height * 0.06,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: appData.isDark ? bottomContainerDark : bottomContainerBorder,
+                color: appData.isDark
+                    ? bottomContainerDark
+                    : bottomContainerBorder,
                 borderRadius: BorderRadius.circular(40),
               ),
               child: Row(
@@ -142,7 +145,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     "\$ ${serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].servicePrice}",
                     style: TextStyle(
                       fontSize: 18,
-                      color: appData.isDark ? bottomContainerTextDark : bottomContainerText,
+                      color: appData.isDark
+                          ? bottomContainerTextDark
+                          : bottomContainerText,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -151,13 +156,22 @@ class _ServiceScreenState extends State<ServiceScreen> {
                       temporaryList.add(
                         ActiveBookingsModel(
                           0,
-                          serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].serviceName,
-                          serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].serviceImage,
+                          serviceProviders[widget.serviceIndex]
+                              .serviceProviders[widget.providerIndex]
+                              .providerServices[widget.index]
+                              .serviceName,
+                          serviceProviders[widget.serviceIndex]
+                              .serviceProviders[widget.providerIndex]
+                              .providerServices[widget.index]
+                              .serviceImage,
                           "John Cleaning Services",
                           selectedDate,
                           _time.format(context),
                           "In Process",
-                          serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].servicePrice,
+                          serviceProviders[widget.serviceIndex]
+                              .serviceProviders[widget.providerIndex]
+                              .providerServices[widget.index]
+                              .servicePrice,
                         ),
                       );
                       Navigator.push(
@@ -178,7 +192,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     child: Text(
                       "Continue",
                       style: TextStyle(
-                        color: appData.isDark ? bottomContainerTextDark : bottomContainerText,
+                        color: appData.isDark
+                            ? bottomContainerTextDark
+                            : bottomContainerText,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -195,7 +211,8 @@ class _ServiceScreenState extends State<ServiceScreen> {
         slivers: [
           SliverAppBar(
             pinned: true,
-            titleTextStyle: TextStyle(color: _textColor, fontWeight: FontWeight.w900, fontSize: 20),
+            titleTextStyle: TextStyle(
+                color: _textColor, fontWeight: FontWeight.w900, fontSize: 20),
             backgroundColor: customAppbarColor,
             leading: IconButton(
               icon: Icon(Icons.arrow_back, color: _iconColor),
@@ -207,7 +224,10 @@ class _ServiceScreenState extends State<ServiceScreen> {
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                 widget.fromBooking
-                    ? serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].serviceImage
+                    ? serviceProviders[widget.serviceIndex]
+                        .serviceProviders[widget.providerIndex]
+                        .providerServices[widget.index]
+                        .serviceImage
                     : widget.fromRenovate
                         ? renovateServices[widget.index].imagePath!
                         : combosServices[widget.index].imagePath!,
@@ -217,7 +237,10 @@ class _ServiceScreenState extends State<ServiceScreen> {
             centerTitle: true,
             title: Text(
               widget.fromBooking
-                  ? serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].serviceName
+                  ? serviceProviders[widget.serviceIndex]
+                      .serviceProviders[widget.providerIndex]
+                      .providerServices[widget.index]
+                      .serviceName
                   : widget.fromRenovate
                       ? renovateServices[widget.index].title
                       : combosServices[widget.index].title,
@@ -230,11 +253,15 @@ class _ServiceScreenState extends State<ServiceScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text("Apartment Size", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text("Apartment Size",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                   Space(16),
                   ApartmentSizeComponent(),
                   Space(16),
-                  Text("Area in Sqft", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text("Area in Sqft",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                   Space(16),
                   TextField(
                     keyboardType: TextInputType.number,
@@ -249,7 +276,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     },
                   ),
                   Space(16),
-                  Text("Pick a date", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text("Pick a date",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                   Space(16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -263,20 +292,25 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             year--;
                             selectedYear = year.toString();
                             selectedMonth = date.DateUtils.months[monthIndex];
-                            selectedMonthShort = date.DateUtils.monthShort[monthIndex];
-                            currentDateTime = DateTime(currentDateTime.year - 1, DateTime.december, currentDateTime.day);
+                            selectedMonthShort =
+                                date.DateUtils.monthShort[monthIndex];
+                            currentDateTime = DateTime(currentDateTime.year - 1,
+                                DateTime.december, currentDateTime.day);
                             init();
                           } else {
                             monthIndex--;
-                            currentDateTime = DateTime(currentDateTime.year, currentDateTime.month - 1, currentDateTime.day);
+                            currentDateTime = DateTime(currentDateTime.year,
+                                currentDateTime.month - 1, currentDateTime.day);
                             init();
                             selectedMonth = date.DateUtils.months[monthIndex];
-                            selectedMonthShort = date.DateUtils.monthShort[monthIndex];
+                            selectedMonthShort =
+                                date.DateUtils.monthShort[monthIndex];
                           }
                           setState(() {});
                         },
                       ),
-                      Text('$selectedMonth $selectedYear', style: TextStyle(fontWeight: FontWeight.w500)),
+                      Text('$selectedMonth $selectedYear',
+                          style: TextStyle(fontWeight: FontWeight.w500)),
                       IconButton(
                         icon: Icon(Icons.navigate_next),
                         onPressed: () {
@@ -286,15 +320,19 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             year++;
                             selectedYear = year.toString();
                             selectedMonth = date.DateUtils.months[monthIndex];
-                            selectedMonthShort = date.DateUtils.monthShort[monthIndex];
-                            currentDateTime = DateTime(currentDateTime.year + 1, DateTime.january, currentDateTime.day);
+                            selectedMonthShort =
+                                date.DateUtils.monthShort[monthIndex];
+                            currentDateTime = DateTime(currentDateTime.year + 1,
+                                DateTime.january, currentDateTime.day);
                             init();
                           } else {
                             monthIndex++;
-                            currentDateTime = DateTime(currentDateTime.year, currentDateTime.month + 1, currentDateTime.day);
+                            currentDateTime = DateTime(currentDateTime.year,
+                                currentDateTime.month + 1, currentDateTime.day);
                             init();
                             selectedMonth = date.DateUtils.months[monthIndex];
-                            selectedMonthShort = date.DateUtils.monthShort[monthIndex];
+                            selectedMonthShort =
+                                date.DateUtils.monthShort[monthIndex];
                           }
                           setState(() {});
                         },
@@ -310,34 +348,47 @@ class _ServiceScreenState extends State<ServiceScreen> {
                         onTap: () {
                           setState(() {
                             currentDateTime = currentMonthList[index];
-                            selectedDate = "${currentDateTime.day.toString()} $selectedMonthShort,$selectedYear";
-                            selectedWeekday = date.DateUtils.weekdaysFull[currentMonthList[index].weekday - 1];
+                            selectedDate =
+                                "${currentDateTime.day.toString()} $selectedMonthShort,$selectedYear";
+                            selectedWeekday = date.DateUtils.weekdaysFull[
+                                currentMonthList[index].weekday - 1];
                           });
                         },
                         child: Card(
-                          margin: EdgeInsets.only(right: 8, bottom: 8, top: 8, left: 4),
+                          margin: EdgeInsets.only(
+                              right: 8, bottom: 8, top: 8, left: 4),
                           color: appData.isDark
-                              ? (currentMonthList[index].day != currentDateTime.day)
+                              ? (currentMonthList[index].day !=
+                                      currentDateTime.day)
                                   ? greyColor
                                   : selectedCard
-                              : (currentMonthList[index].day != currentDateTime.day)
+                              : (currentMonthList[index].day !=
+                                      currentDateTime.day)
                                   ? unselectedCard
                                   : selectedCard,
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 8),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   currentMonthList[index].day.toString(),
                                   style: TextStyle(
-                                    color: currentMonthList[index].day != currentDateTime.day ? blackColor : whiteColor,
+                                    color: currentMonthList[index].day !=
+                                            currentDateTime.day
+                                        ? blackColor
+                                        : whiteColor,
                                   ),
                                 ),
                                 Text(
-                                  date.DateUtils.weekdays[currentMonthList[index].weekday - 1],
+                                  date.DateUtils.weekdays[
+                                      currentMonthList[index].weekday - 1],
                                   style: TextStyle(
-                                    color: currentMonthList[index].day != currentDateTime.day ? blackColor : whiteColor,
+                                    color: currentMonthList[index].day !=
+                                            currentDateTime.day
+                                        ? blackColor
+                                        : whiteColor,
                                   ),
                                 ),
                               ],
@@ -348,12 +399,18 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     ),
                   ),
                   Space(16),
-                  Text("Pick a Time", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text("Pick a Time",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                   Space(8),
                   Text('Selected time: ${_time.format(context)}'),
                   Space(8),
-                  ElevatedButton(onPressed: _selectTime, child: Text('SELECT TIME')),
-                  Padding(padding: EdgeInsets.all(8), child: SizedBox(height: MediaQuery.of(context).size.height * 0.07))
+                  ElevatedButton(
+                      onPressed: _selectTime, child: Text('SELECT TIME')),
+                  Padding(
+                      padding: EdgeInsets.all(8),
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.07))
                 ],
               ),
             ),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/models/home_construction_model.dart';
-import 'package:home_hub/screens/service_providers_screen.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/models/home_construction_model.dart';
+import 'package:workflow_customer/screens/service_providers_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
 class HomeConstructionComponent extends StatefulWidget {
   @override
-  _HomeConstructionComponentState createState() => _HomeConstructionComponentState();
+  _HomeConstructionComponentState createState() =>
+      _HomeConstructionComponentState();
 }
 
 class _HomeConstructionComponentState extends State<HomeConstructionComponent> {
@@ -38,7 +39,8 @@ class _HomeConstructionComponentState extends State<HomeConstructionComponent> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ServiceProvidersScreen(index: index)),
+                MaterialPageRoute(
+                    builder: (context) => ServiceProvidersScreen(index: index)),
               );
             },
             child: Padding(

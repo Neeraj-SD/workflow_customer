@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/services_model.dart';
-import 'package:home_hub/screens/service_providers_screen.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/services_model.dart';
+import 'package:workflow_customer/screens/service_providers_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
 class HomeServiceComponent extends StatefulWidget {
   @override
@@ -40,7 +40,8 @@ class _HomeServiceComponentState extends State<HomeServiceComponent> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ServiceProvidersScreen(index: index)),
+                MaterialPageRoute(
+                    builder: (context) => ServiceProvidersScreen(index: index)),
               );
               for (var i = 0; i < serviceProviders.length; i++) {
                 if (i == index) {
@@ -59,7 +60,9 @@ class _HomeServiceComponentState extends State<HomeServiceComponent> {
                     borderRadius: BorderRadius.circular(40),
                     child: Container(
                       padding: EdgeInsets.all(16),
-                      color: serviceProviders[index].isSelected ? blackColor : textFieldColor,
+                      color: serviceProviders[index].isSelected
+                          ? blackColor
+                          : textFieldColor,
                       child: Observer(
                         builder: (context) {
                           return Icon(

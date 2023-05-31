@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/upi_payment.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/upi_payment.dart';
 
 import '../custom_widget/space.dart';
 import '../utils/colors.dart';
@@ -10,7 +10,9 @@ class PaymentContainer extends StatelessWidget {
   final IconData icon;
   final bool isUpi;
 
-  PaymentContainer({Key? key, required this.title, required this.icon, this.isUpi = false}) : super(key: key);
+  PaymentContainer(
+      {Key? key, required this.title, required this.icon, this.isUpi = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,8 @@ class PaymentContainer extends StatelessWidget {
                       Space(8),
                       Text(
                         upiPaymentData[index].PaymentName.toString(),
-                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 12),
                       ),
                     ],
                   ),

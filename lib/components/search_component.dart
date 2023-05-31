@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/models/services_model.dart';
-import 'package:home_hub/screens/service_providers_screen.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/models/services_model.dart';
+import 'package:workflow_customer/screens/service_providers_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
 class SearchComponent extends StatelessWidget {
   final ServicesModel? servicesModel;
@@ -16,7 +16,8 @@ class SearchComponent extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ServiceProvidersScreen(index: index)),
+          MaterialPageRoute(
+              builder: (context) => ServiceProvidersScreen(index: index)),
         );
       },
       child: Padding(
@@ -29,7 +30,8 @@ class SearchComponent extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(servicesModel!.serviceImage, width: 90, height: 90, fit: BoxFit.cover),
+                child: Image.asset(servicesModel!.serviceImage,
+                    width: 90, height: 90, fit: BoxFit.cover),
               ),
               Space(16),
               Column(

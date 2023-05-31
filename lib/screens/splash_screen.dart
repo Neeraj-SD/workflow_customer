@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:home_hub/screens/dashboard_screen.dart';
-import 'package:home_hub/screens/walk_through_screen.dart';
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/screens/dashboard_screen.dart';
+import 'package:workflow_customer/screens/walk_through_screen.dart';
+import 'package:workflow_customer/utils/images.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

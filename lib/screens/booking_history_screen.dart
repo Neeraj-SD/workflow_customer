@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/components/booking_history_component.dart';
-import 'package:home_hub/models/last_bookings_model.dart';
+import 'package:workflow_customer/components/booking_history_component.dart';
+import 'package:workflow_customer/models/last_bookings_model.dart';
 
 class BookingHistoryScreen extends StatefulWidget {
   const BookingHistoryScreen({Key? key}) : super(key: key);
@@ -17,7 +17,8 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
         padding: EdgeInsets.all(8.0),
         itemCount: lastBooking.length,
         itemBuilder: (BuildContext context, int index) {
-          return BookingHistoryComponent(index, lastBookings: lastBooking[index]);
+          return BookingHistoryComponent(index,
+              lastBookings: lastBooking[index]);
         },
       ),
     );

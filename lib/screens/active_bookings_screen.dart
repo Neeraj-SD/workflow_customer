@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/components/active_booking_component.dart';
+import 'package:workflow_customer/components/active_booking_component.dart';
 
 import '../models/active_bookings_model.dart';
 
@@ -20,7 +20,8 @@ class _ActiveBookingsScreenState extends State<ActiveBookingsScreen> {
               padding: EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 16),
               itemCount: activeBooking.length,
               itemBuilder: (BuildContext context, int index) {
-                return ActiveBookingComponent(activeBookingsModel: activeBooking[index], index);
+                return ActiveBookingComponent(
+                    activeBookingsModel: activeBooking[index], index);
               },
             ),
     );

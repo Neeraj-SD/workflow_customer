@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/models/combos_services_model.dart';
-import 'package:home_hub/screens/service_screen.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/models/combos_services_model.dart';
+import 'package:workflow_customer/screens/service_screen.dart';
 
 class CombosSubscriptionsComponent extends StatelessWidget {
   @override
@@ -17,7 +17,8 @@ class CombosSubscriptionsComponent extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ServiceScreen(index: index)),
+                MaterialPageRoute(
+                    builder: (context) => ServiceScreen(index: index)),
               );
             },
             child: Padding(
@@ -32,7 +33,8 @@ class CombosSubscriptionsComponent extends StatelessWidget {
                     child: SizedBox(
                       width: 170,
                       height: 100,
-                      child: Image.asset(combosServices[index].imagePath!, fit: BoxFit.cover),
+                      child: Image.asset(combosServices[index].imagePath!,
+                          fit: BoxFit.cover),
                     ),
                   ),
                   Space(8),

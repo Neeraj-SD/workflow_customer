@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/main.dart';
-import 'package:home_hub/models/active_bookings_model.dart';
-import 'package:home_hub/screens/cancel_booking_screen.dart';
-import 'package:home_hub/utils/colors.dart';
-import 'package:home_hub/utils/images.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/main.dart';
+import 'package:workflow_customer/models/active_bookings_model.dart';
+import 'package:workflow_customer/screens/cancel_booking_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
+import 'package:workflow_customer/utils/images.dart';
 
 class ActiveBookingComponent extends StatelessWidget {
   final ActiveBookingsModel? activeBookingsModel;

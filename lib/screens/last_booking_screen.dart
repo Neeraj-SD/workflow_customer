@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/screens/dashboard_screen.dart';
-import 'package:home_hub/utils/colors.dart';
+import 'package:workflow_customer/screens/dashboard_screen.dart';
+import 'package:workflow_customer/utils/colors.dart';
 
 import '../custom_widget/space.dart';
 import '../main.dart';
@@ -30,7 +30,8 @@ class LastBookingScreen extends StatelessWidget {
             padding: EdgeInsets.all(10),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                fixedSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height * 0.06),
+                fixedSize: Size(MediaQuery.of(context).size.width,
+                    MediaQuery.of(context).size.height * 0.06),
                 shape: StadiumBorder(),
               ),
               child: Padding(
@@ -40,7 +41,8 @@ class LastBookingScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (BuildContext context) => DashBoardScreen()),
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => DashBoardScreen()),
                   (route) => false,
                 );
               },
@@ -59,18 +61,25 @@ class LastBookingScreen extends StatelessWidget {
                 padding: EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   boxShadow: [
-                    BoxShadow(color: Colors.grey.withOpacity(0.2), blurRadius: 0.6, spreadRadius: 1),
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 0.6,
+                        spreadRadius: 1),
                   ],
                   color: appData.isDark ? Colors.black : whiteColor,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(Icons.done, size: 80, color: appData.isDark ? whiteColor : blackColor),
+                child: Icon(Icons.done,
+                    size: 80, color: appData.isDark ? whiteColor : blackColor),
               ),
               Space(16),
-              Text(cancel ? "Cancelled!!" : "Confirmed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32)),
+              Text(cancel ? "Cancelled!!" : "Confirmed",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32)),
               Space(32),
               Text(
-                cancel ? "Your booking has been cancelled successfully" : "Your booking has been confirmed for $date",
+                cancel
+                    ? "Your booking has been cancelled successfully"
+                    : "Your booking has been confirmed for $date",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: greyColor),
               ),
@@ -91,11 +100,16 @@ class LastBookingScreen extends StatelessWidget {
                       children: [
                         Icon(Icons.timer_outlined, color: greyColor),
                         Space(4),
-                        Text(time, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+                        Text(time,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 17)),
                         Space(4),
-                        Text("on", style: TextStyle(color: greyColor, fontSize: 13)),
+                        Text("on",
+                            style: TextStyle(color: greyColor, fontSize: 13)),
                         Space(4),
-                        Text(weekday, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+                        Text(weekday,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 17)),
                       ],
                     )
                   ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:home_hub/custom_widget/space.dart';
-import 'package:home_hub/models/common_model.dart';
-import 'package:home_hub/screens/provider_review_screen.dart';
+import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/models/common_model.dart';
+import 'package:workflow_customer/screens/provider_review_screen.dart';
 
 class ServiceListComponent extends StatelessWidget {
   final CommonModel? commonModel;
@@ -15,7 +15,8 @@ class ServiceListComponent extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProviderReview(index: index!)),
+          MaterialPageRoute(
+              builder: (context) => ProviderReview(index: index!)),
         );
       },
       child: Padding(
@@ -29,7 +30,8 @@ class ServiceListComponent extends StatelessWidget {
                 child: SizedBox(
                   width: 180,
                   height: 100,
-                  child: Image.asset(commonModel!.imagePath!, fit: BoxFit.cover),
+                  child:
+                      Image.asset(commonModel!.imagePath!, fit: BoxFit.cover),
                 )),
             Space(4),
             Text(
