@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:workflow_customer/auth/controller/auth_controller.dart';
+import 'package:workflow_customer/custom_widget/add_job.dart';
 import 'package:workflow_customer/screens/active_bookings_screen.dart';
 import 'package:workflow_customer/screens/booking_history_screen.dart';
 import 'package:workflow_customer/utils/colors.dart';
@@ -18,6 +21,8 @@ class _BookingsFragmentState extends State<BookingsFragment>
   late TabController bookingTabController =
       TabController(length: 2, vsync: this, initialIndex: 0);
 
+  final AuthController authController = Get.find();
+
   @override
   void dispose() {
     super.dispose();
@@ -27,7 +32,20 @@ class _BookingsFragmentState extends State<BookingsFragment>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black87,
+        onPressed: () => Get.to(AddJobWidget()),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () => authController.signOut(),
+              icon: const Icon(Icons.logout))
+        ],
         automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 0,

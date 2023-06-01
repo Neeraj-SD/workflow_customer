@@ -26,19 +26,18 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-          DateTime now = DateTime.now();
+          // DateTime now = DateTime.now();
+          // if (_currentBackPressTime == null ||
+          //     now.difference(_currentBackPressTime!) > Duration(seconds: 2)) {
+          //   _currentBackPressTime = now;
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     SnackBar(
+          //       content: Text('Press back again to exit'),
+          //     ),
+          //   );
 
-          if (_currentBackPressTime == null ||
-              now.difference(_currentBackPressTime!) > Duration(seconds: 2)) {
-            _currentBackPressTime = now;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Press back again to exit'),
-              ),
-            );
-
-            return Future.value(false);
-          }
+          //   return Future.value(false);
+          // }
           return Future.value(true);
         },
         child: Scaffold(

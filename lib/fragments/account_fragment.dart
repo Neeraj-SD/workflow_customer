@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:workflow_customer/fragments/bookings_fragment.dart';
 import 'package:workflow_customer/models/customer_details_model.dart';
+import 'package:workflow_customer/profile/controller/profile_controller.dart';
 import 'package:workflow_customer/screens/favourite_services_screen.dart';
 import 'package:workflow_customer/screens/my_profile_screen.dart';
 import 'package:workflow_customer/screens/notification_screen.dart';
@@ -17,6 +19,8 @@ class AccountFragment extends StatefulWidget {
 }
 
 class _AccountFragmentState extends State<AccountFragment> {
+  final ProfileController profileController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +42,15 @@ class _AccountFragmentState extends State<AccountFragment> {
             SizedBox(
                 height: 90,
                 width: 90,
-                child: CircleAvatar(backgroundImage: AssetImage(userImage))),
+                child: CircleAvatar(
+                    backgroundImage:
+                        NetworkImage('${profileController.user.picture}'))),
             Space(8),
-            Text(getName,
+            Text('${profileController.user.name}',
                 textAlign: TextAlign.start,
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
             Space(4),
-            Text(getEmail,
+            Text('${profileController.user.email}',
                 textAlign: TextAlign.start,
                 style: TextStyle(color: secondaryColor, fontSize: 12)),
             Space(16),

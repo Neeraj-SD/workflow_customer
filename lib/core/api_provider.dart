@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:workflow_customer/utils/constant.dart';
 
 class ApiProvider extends GetConnect {
   // Get request
@@ -22,10 +23,6 @@ class ApiProvider extends GetConnect {
     // Request Modifier
     httpClient.addRequestModifier<dynamic>((request) {
       print('called');
-      log("-------------------------------------------------------------");
-      log(request.url.toString());
-      log(request.method.toString());
-      log(request.headers.toString());
 
       //add header
       final token = storage.read('authToken');
@@ -33,10 +30,16 @@ class ApiProvider extends GetConnect {
       request.headers['accept'] = "application/json";
       request.headers['Authorization'] = "Token $token";
 
+      log("-------------------------------------------------------------");
+      log(request.url.toString());
+      log(request.method.toString());
+      log(request.headers.toString());
+
       return request;
     });
 
-    httpClient.baseUrl = 'http://workflow.centralindia.cloudapp.azure.com';
+    // httpClient.baseUrl = 'http://workflow.centralindia.cloudapp.azure.com';
+    httpClient.baseUrl = hostUrl;
 
     // Response Modifiers
     httpClient.addResponseModifier((request, response) {
