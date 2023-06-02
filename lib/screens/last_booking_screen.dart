@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:workflow_customer/screens/dashboard_screen.dart';
 import 'package:workflow_customer/utils/colors.dart';
 
@@ -39,12 +40,7 @@ class LastBookingScreen extends StatelessWidget {
                 child: Text("Go Back Home", style: TextStyle(fontSize: 16)),
               ),
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => DashBoardScreen()),
-                  (route) => false,
-                );
+                Get.offAndToNamed('/');
               },
             ),
           );

@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:workflow_customer/auth/model/user.dart';
 import 'package:workflow_customer/core/api_provider.dart';
+import 'package:workflow_customer/job/controller/job_controller.dart';
 import 'package:workflow_customer/job/model/tag.dart';
 
 class JobAddController extends GetxController {
@@ -18,6 +19,7 @@ class JobAddController extends GetxController {
   late Reference? imagesRef = storageRef.child('images');
   late TextEditingController locationController;
   late TextEditingController descriptionController;
+  final JobController jobController = Get.find();
 
   final tags = <TagModel>[].obs;
   late TagModel selectedTag;
@@ -97,6 +99,7 @@ class JobAddController extends GetxController {
       };
 
       await api.postApi('/api/job/jobs/', data);
+      jobController.fetchActiveJobs();
       Get.back();
       // fetchAllStories();
       Get.snackbar(

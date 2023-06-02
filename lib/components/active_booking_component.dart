@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/job/controller/job_controller.dart';
+import 'package:workflow_customer/job/model/job.dart';
 import 'package:workflow_customer/main.dart';
 import 'package:workflow_customer/models/active_bookings_model.dart';
 import 'package:workflow_customer/screens/cancel_booking_screen.dart';
@@ -7,20 +10,24 @@ import 'package:workflow_customer/utils/colors.dart';
 import 'package:workflow_customer/utils/images.dart';
 
 class ActiveBookingComponent extends StatelessWidget {
-  final ActiveBookingsModel? activeBookingsModel;
+  final JobModel? jobModel;
   final int index;
 
-  ActiveBookingComponent(this.index, {this.activeBookingsModel});
+  ActiveBookingComponent(this.index, {this.jobModel});
+
+  final JobController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => CancelBookingScreen(activeId: index)),
-        );
+        controller.goToJobDetailPage(index);
+
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //       builder: (context) => CancelBookingScreen(activeId: index)),
+        // );
       },
       child: Padding(
         padding: EdgeInsets.only(top: 8.0),
@@ -36,7 +43,7 @@ class ActiveBookingComponent extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      activeBookingsModel!.serviceName,
+                      '${jobModel?.tags?[0].name}',
                       textAlign: TextAlign.start,
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
@@ -54,7 +61,8 @@ class ActiveBookingComponent extends StatelessWidget {
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * 0.06,
                         width: MediaQuery.of(context).size.height * 0.06,
-                        child: Image.asset(home, fit: BoxFit.cover),
+                        child: Image.network(jobModel?.image ?? '',
+                            fit: BoxFit.cover),
                       ),
                     ),
                     Space(8),
@@ -63,7 +71,7 @@ class ActiveBookingComponent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(activeBookingsModel!.name,
+                        Text('${jobModel?.location}',
                             style: TextStyle(
                                 fontWeight: FontWeight.w900, fontSize: 18)),
                         Space(4),
@@ -74,7 +82,7 @@ class ActiveBookingComponent extends StatelessWidget {
                             Icon(Icons.watch_later_outlined,
                                 color: orangeColor, size: 16),
                             Space(2),
-                            Text(activeBookingsModel!.date,
+                            Text('jobModel!.date',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
                             Space(10),
@@ -82,7 +90,7 @@ class ActiveBookingComponent extends StatelessWidget {
                                 style: TextStyle(
                                     color: orangeColor, fontSize: 12)),
                             Space(2),
-                            Text(activeBookingsModel!.time,
+                            Text('jobModel!.time',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
                           ],

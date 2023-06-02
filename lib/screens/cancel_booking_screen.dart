@@ -1,62 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:workflow_customer/job/controller/job_controller.dart';
 import 'package:workflow_customer/screens/last_booking_screen.dart';
 import 'package:workflow_customer/utils/colors.dart';
+import 'package:workflow_customer/utils/expandable_text.dart';
 
 import '../custom_widget/space.dart';
 import '../main.dart';
 import '../models/active_bookings_model.dart';
 
-class CancelBookingScreen extends StatefulWidget {
-  final int activeId;
+class CancelBookingScreen extends StatelessWidget {
+  CancelBookingScreen({Key? key}) : super(key: key);
 
-  const CancelBookingScreen({Key? key, required this.activeId})
-      : super(key: key);
+  final JobController controller = Get.find();
 
-  @override
-  State<CancelBookingScreen> createState() => _CancelBookingScreenState();
-}
-
-class _CancelBookingScreenState extends State<CancelBookingScreen> {
   String? refundMethod;
+
   String? reasonForCancel;
+
   int itemCount = 1;
 
-  Future<void> _showAlertDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Alert'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: [
-                Text('Please select valid details'),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              child: Text('Ok'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              },
-            ),
+  Widget _showAlertDialog() {
+    return AlertDialog(
+      title: Text('Alert'),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: [
+            Text('Please select valid details'),
           ],
-        );
-      },
+        ),
+      ),
+      actions: [
+        TextButton(
+          child: Text('Ok'),
+          onPressed: () {
+            // Navigator.of(context).pop();
+            // Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final selectedJob = controller.selectedJob;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
         backgroundColor: transparent,
-        title: Text(
+        title: const Text(
           "Job Details",
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
@@ -76,20 +71,12 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
               child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text("Accept Bid")),
-              onPressed: () {
-                if (refundMethod == null) {
-                  _showAlertDialog();
-                } else if (reasonForCancel == null) {
-                  _showAlertDialog();
-                } else {
-                  cancelBooking(widget.activeId);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LastBookingScreen(cancel: true)),
-                  );
-                }
-              },
+              onPressed: () => controller.acceptBid(),
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => ),
+              // );
             ),
           );
         },
@@ -104,6 +91,8 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Card(
                     color: appData.isDark ? cardColorDark : cardColor,
@@ -129,8 +118,8 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                                       width:
                                           MediaQuery.of(context).size.height *
                                               0.10,
-                                      child: Image.asset(
-                                          'assets/images/home.jpg',
+                                      child: Image.network(
+                                          selectedJob.image ?? '',
                                           fit: BoxFit.cover),
                                     ),
                                   ),
@@ -141,8 +130,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        activeBooking[widget.activeId]
-                                            .serviceName,
+                                        '${selectedJob.tags?[0].name}',
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.start,
@@ -152,7 +140,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                                       ),
                                       Space(4),
                                       Text(
-                                        activeBooking[widget.activeId].name,
+                                        '${selectedJob.location}',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.start,
@@ -170,7 +158,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                                               color: greyColor, size: 14),
                                           Space(2),
                                           Text(
-                                            activeBooking[widget.activeId].time,
+                                            '120 min',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 10),
@@ -233,12 +221,53 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                       ),
                     ),
                   ),
+                  Card(
+                    color: appData.isDark ? cardColorDark : cardColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Row(
+                        children: [
+                          Icon(Icons.location_on, size: 20),
+                          Space(24),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Address",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 18),
+                                ),
+                                Space(4),
+                                Text(
+                                  "${selectedJob.location}",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: appData.isDark
+                                        ? cardTextDark
+                                        : cardText,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Space(8),
+                          Icon(Icons.edit, size: 20),
+                        ],
+                      ),
+                    ),
+                  ),
                   Space(32),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Order Summary",
+                        "Description",
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             fontWeight: FontWeight.w900, fontSize: 18),
@@ -246,18 +275,16 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                     ],
                   ),
                   Space(15),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Job Description",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: greyColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
-                      ),
-                    ],
+                  // ExpandableText('${selectedJob.description}', key: key),
+                  Text(
+                    '${selectedJob.description}',
+                    textAlign: TextAlign.start,
+                    // overflow: TextOverflow.ellipsis,
+                    // maxLines: 6,
+                    style: TextStyle(
+                        color: greyColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14),
                   ),
                   Space(8),
                   Space(8),
@@ -272,39 +299,54 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                     ],
                   ),
                   Space(8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Worker 1",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: greyColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
-                      ),
-                      Text("₹1000",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 14)),
-                    ],
-                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: selectedJob.bids?.length ?? 0,
+                      itemBuilder: (context, index) => GestureDetector(
+                            onTap: () => controller.setSelectedBid(index),
+                            child: Obx(
+                              () => Card(
+                                color:
+                                    controller.selectedBidIndex.value == index
+                                        ? cardColorDark
+                                        : cardColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                    padding: EdgeInsets.all(8),
+                                    child: ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            "${selectedJob.bids?[index].user?.picture}"),
+                                      ),
+                                      title: Text(
+                                        "${selectedJob.bids?[index].user?.name}",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            color: controller.selectedBidIndex
+                                                        .value ==
+                                                    index
+                                                ? Colors.white
+                                                : greyColor,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14),
+                                      ),
+                                      trailing: Text(
+                                        "₹${selectedJob.bids?[index].amount}",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: controller.selectedBidIndex
+                                                        .value ==
+                                                    index
+                                                ? Colors.white
+                                                : null),
+                                      ),
+                                    )),
+                              ),
+                            ),
+                          )),
+
                   Space(8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Worker 2",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: greyColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
-                      ),
-                      Text("₹1500",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(fontSize: 14)),
-                    ],
-                  ),
                 ],
               ),
             ),
