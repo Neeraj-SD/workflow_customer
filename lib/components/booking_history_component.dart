@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workflow_customer/custom_widget/space.dart';
+import 'package:workflow_customer/job/model/job.dart';
 import 'package:workflow_customer/main.dart';
 import 'package:workflow_customer/models/last_bookings_model.dart';
 import 'package:workflow_customer/utils/colors.dart';
@@ -7,10 +8,10 @@ import 'package:workflow_customer/utils/images.dart';
 import 'package:workflow_customer/utils/widgets.dart';
 
 class BookingHistoryComponent extends StatelessWidget {
-  final LastBookingsModel? lastBookings;
+  final JobModel? lastBooking;
   final int index;
 
-  BookingHistoryComponent(this.index, {this.lastBookings});
+  BookingHistoryComponent(this.index, {this.lastBooking});
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +33,17 @@ class BookingHistoryComponent extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      lastBooking[index].serviceName,
+                      '${lastBooking?.location}',
                       textAlign: TextAlign.start,
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
                     ),
                     Text(
-                      lastBooking[index].status,
+                      lastBooking?.status == 'A' ? 'Accepted' : 'Cancelled',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                        color: lastBooking[index].status == "Completed"
-                            ? greenColor
-                            : redColor,
+                        color:
+                            lastBooking?.status == "A" ? greenColor : redColor,
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
@@ -69,7 +69,7 @@ class BookingHistoryComponent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(lastBooking[index].name,
+                        Text('${lastBooking?.tags?[0].name}',
                             style: TextStyle(
                                 fontWeight: FontWeight.w900, fontSize: 18)),
                         Space(4),
@@ -80,7 +80,7 @@ class BookingHistoryComponent extends StatelessWidget {
                             Icon(Icons.watch_later_outlined,
                                 color: orangeColor, size: 16),
                             Space(2),
-                            Text(lastBooking[index].date,
+                            Text("date",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
                             Space(2),
@@ -88,7 +88,7 @@ class BookingHistoryComponent extends StatelessWidget {
                                 style: TextStyle(
                                     color: orangeColor, fontSize: 12)),
                             Space(2),
-                            Text(lastBooking[index].time,
+                            Text('time',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
                           ],
@@ -101,7 +101,7 @@ class BookingHistoryComponent extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    "₹${lastBooking[index].price}",
+                    "₹${lastBooking?.acceptedBid?.amount}",
                     textAlign: TextAlign.end,
                     style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                   ),

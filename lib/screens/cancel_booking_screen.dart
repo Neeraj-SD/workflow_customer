@@ -300,6 +300,7 @@ class CancelBookingScreen extends StatelessWidget {
                   ),
                   Space(8),
                   ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: selectedJob.bids?.length ?? 0,
                       itemBuilder: (context, index) => GestureDetector(

@@ -8,7 +8,9 @@ class JobController extends GetxController {
   final ApiProvider api = Get.find();
 
   final activeJobs = <JobModel>[].obs;
+  final pastJobs = <JobModel>[].obs;
   var activeLoading = false.obs;
+  var pastJobLoading = false.obs;
   var selectedJobIndex;
   var selectedBidIndex = (-1).obs;
   late JobModel selectedJob;
@@ -17,13 +19,21 @@ class JobController extends GetxController {
   void onInit() {
     super.onInit();
     fetchActiveJobs();
+    fetchPastJobs();
   }
 
   void fetchActiveJobs() async {
     activeLoading(true);
-    final result = await api.getApi('/api/job/jobs/?is_active=true');
+    final result = await api.getApi('/api/job/jobs/?is_open=true');
     activeJobs.value = jobModelFromJson(result.body);
     activeLoading(false);
+  }
+
+  void fetchPastJobs() async {
+    pastJobLoading(true);
+    final result = await api.getApi('/api/job/jobs/?is_open=false');
+    pastJobs.value = jobModelFromJson(result.body);
+    pastJobLoading(false);
   }
 
   void goToJobDetailPage(int index) {
@@ -35,6 +45,7 @@ class JobController extends GetxController {
 
   Future pullToRefresh() async {
     fetchActiveJobs();
+    fetchPastJobs();
     return Future.delayed(Duration(seconds: 1));
   }
 
@@ -42,7 +53,7 @@ class JobController extends GetxController {
     selectedBidIndex.value = index;
   }
 
-  void acceptBid() {
+  void acceptBid() async {
     if (selectedBidIndex == -1) {
       Get.snackbar(
         'No bid selected',
@@ -50,6 +61,9 @@ class JobController extends GetxController {
       );
       return;
     }
+    int bidId = selectedJob.bids?[selectedBidIndex.value].id ?? 0;
+    final result = await api.postApi('/api/job/bids/$bidId/accept-bid/', {});
+    pullToRefresh();
     Get.off(() => LastBookingScreen(cancel: false));
   }
 }
