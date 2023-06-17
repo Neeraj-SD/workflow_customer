@@ -8,6 +8,7 @@ import 'package:workflow_customer/auth/view/login_screen.dart';
 import 'package:workflow_customer/components/my_scroll_behaviour.dart';
 import 'package:workflow_customer/getx_di.dart';
 import 'package:workflow_customer/screens/dashboard_screen.dart';
+import 'package:workflow_customer/screens/my_profile_screen.dart';
 import 'package:workflow_customer/screens/splash_screen.dart';
 import 'package:workflow_customer/utils/colors.dart';
 import 'package:workflow_customer/utils/constant.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
                 page: () => storage.hasData('authToken')
                     ? storage.read('isComplete') ?? false
                         ? DashBoardScreen()
-                        : DashBoardScreen()
+                        : MyProfileScreen()
                     : LoginScreen()),
             // GetPage(name: '/posts', page: () => PostsScreen()),
             GetPage(name: '/login', page: () => LoginScreen()),

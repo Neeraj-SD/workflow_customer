@@ -41,11 +41,11 @@ class _BookingsFragmentState extends State<BookingsFragment>
         ),
       ),
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () => authController.signOut(),
-              icon: const Icon(Icons.logout))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () => authController.signOut(),
+        //       icon: const Icon(Icons.logout))
+        // ],
         automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 0,
@@ -70,7 +70,7 @@ class _BookingsFragmentState extends State<BookingsFragment>
           indicatorColor: blackColor,
           tabs: [
             Tab(text: "Open Request"),
-            Tab(text: "Past Requests"),
+            Tab(text: "History"),
           ],
         ),
       ),

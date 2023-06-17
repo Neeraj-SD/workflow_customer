@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:workflow_customer/custom_widget/space.dart';
 import 'package:workflow_customer/job/model/job.dart';
 import 'package:workflow_customer/main.dart';
@@ -8,10 +9,10 @@ import 'package:workflow_customer/utils/images.dart';
 import 'package:workflow_customer/utils/widgets.dart';
 
 class BookingHistoryComponent extends StatelessWidget {
-  final JobModel? lastBooking;
+  final JobModel? jobModel;
   final int index;
 
-  BookingHistoryComponent(this.index, {this.lastBooking});
+  BookingHistoryComponent(this.index, {this.jobModel});
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +34,16 @@ class BookingHistoryComponent extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${lastBooking?.location}',
+                      '${jobModel?.location}',
                       textAlign: TextAlign.start,
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
                     ),
                     Text(
-                      lastBooking?.status == 'A' ? 'Accepted' : 'Cancelled',
+                      jobModel?.status == 'A' ? 'Accepted' : 'Cancelled',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                        color:
-                            lastBooking?.status == "A" ? greenColor : redColor,
+                        color: jobModel?.status == "A" ? greenColor : redColor,
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
@@ -69,7 +69,7 @@ class BookingHistoryComponent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('${lastBooking?.tags?[0].name}',
+                        Text('${jobModel?.tags?[0].name}',
                             style: TextStyle(
                                 fontWeight: FontWeight.w900, fontSize: 18)),
                         Space(4),
@@ -80,7 +80,9 @@ class BookingHistoryComponent extends StatelessWidget {
                             Icon(Icons.watch_later_outlined,
                                 color: orangeColor, size: 16),
                             Space(2),
-                            Text("date",
+                            Text(
+                                DateFormat("EEE, MMM d")
+                                    .format(jobModel?.date ?? DateTime.now()),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
                             Space(2),
@@ -88,7 +90,9 @@ class BookingHistoryComponent extends StatelessWidget {
                                 style: TextStyle(
                                     color: orangeColor, fontSize: 12)),
                             Space(2),
-                            Text('time',
+                            Text(
+                                DateFormat("h:mm a")
+                                    .format(jobModel?.date ?? DateTime.now()),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
                           ],
@@ -101,7 +105,7 @@ class BookingHistoryComponent extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    "₹${lastBooking?.acceptedBid?.amount}",
+                    "₹${jobModel?.acceptedBid?.amount}",
                     textAlign: TextAlign.end,
                     style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                   ),

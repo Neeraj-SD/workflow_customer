@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workflow_customer/custom_widget/space.dart';
 import 'package:workflow_customer/job/controller/job_controller.dart';
 import 'package:workflow_customer/job/model/job.dart';
@@ -82,19 +83,22 @@ class ActiveBookingComponent extends StatelessWidget {
                             Icon(Icons.watch_later_outlined,
                                 color: orangeColor, size: 16),
                             Space(2),
-                            Text('jobModel!.date',
+                            Text(
+                                DateFormat("EEE, MMM d")
+                                    .format(jobModel?.date ?? DateTime.now()),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
-                            Space(10),
-                            Text("at",
+                            Space(80),
+                            Text("Number of bids",
                                 style: TextStyle(
                                     color: orangeColor, fontSize: 12)),
                             Space(2),
-                            Text('jobModel!.time',
+                            Text('${jobModel?.bids?.length ?? 0}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14)),
                           ],
-                        )
+                        ),
+                        // Text('data')
                       ],
                     )
                   ],

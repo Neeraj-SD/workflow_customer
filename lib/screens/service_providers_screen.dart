@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workflow_customer/main.dart';
 import 'package:workflow_customer/screens/provider_detail_screen.dart';
 import 'package:workflow_customer/screens/provider_services_screen.dart';
+import 'package:workflow_customer/screens/service_screen.dart';
 
 import '../custom_widget/space.dart';
 import '../models/services_model.dart';
@@ -202,14 +203,21 @@ class _ServiceProvidersScreenState extends State<ServiceProvidersScreen> {
                                               TextStyle(color: Colors.white)),
                                       onPressed: () {
                                         Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProviderServicesScreen(
-                                                    serviceIndex: widget.index,
-                                                    index: index),
-                                          ),
-                                        );
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ServiceScreen(
+                                                index: serviceProviders[0]
+                                                        .serviceProviders[
+                                                            widget.index]
+                                                        .providerServices
+                                                        .length -
+                                                    1,
+                                                fromBooking: true,
+                                                serviceIndex: 0,
+                                                providerIndex: widget.index,
+                                              ),
+                                            ));
                                       },
                                       style: ElevatedButton.styleFrom(
                                         shape: StadiumBorder(),

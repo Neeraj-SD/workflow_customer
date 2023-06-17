@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workflow_customer/auth/controller/auth_controller.dart';
 import 'package:workflow_customer/fragments/bookings_fragment.dart';
 import 'package:workflow_customer/models/customer_details_model.dart';
 import 'package:workflow_customer/profile/controller/profile_controller.dart';
@@ -20,6 +21,7 @@ class AccountFragment extends StatefulWidget {
 
 class _AccountFragmentState extends State<AccountFragment> {
   final ProfileController profileController = Get.find();
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +79,14 @@ class _AccountFragmentState extends State<AccountFragment> {
                         builder: (context) =>
                             BookingsFragment(fromProfile: true)));
               },
+            ),
+            Space(16),
+            ListTile(
+              horizontalTitleGap: 4,
+              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              leading: Icon(Icons.logout_rounded, size: 20),
+              title: Text("Logout"),
+              onTap: () => authController.signOut(),
             ),
             Space(16),
           ],

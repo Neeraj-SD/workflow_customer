@@ -91,31 +91,31 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),
               Space(70),
-              Form(
-                key: _loginFormKey,
-                child: TextFormField(
-                  keyboardType: TextInputType.phone,
-                  style: TextStyle(fontSize: 16),
-                  inputFormatters: [LengthLimitingTextInputFormatter(10)],
-                  decoration: commonInputDecoration(
-                    hintText: "Enter mobile number",
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(16),
-                      child: GestureDetector(
-                        onTap: () => _showCountryPicker(),
-                        child: Text(
-                          _selectedCountry == null
-                              ? "+91"
-                              : _selectedCountry!.callingCode,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Space(16),
+              // Form(
+              //   key: _loginFormKey,
+              //   child: TextFormField(
+              //     keyboardType: TextInputType.phone,
+              //     style: TextStyle(fontSize: 16),
+              //     inputFormatters: [LengthLimitingTextInputFormatter(10)],
+              //     decoration: commonInputDecoration(
+              //       hintText: "Enter mobile number",
+              //       prefixIcon: Padding(
+              //         padding: EdgeInsets.all(16),
+              //         child: GestureDetector(
+              //           onTap: () => _showCountryPicker(),
+              //           child: Text(
+              //             _selectedCountry == null
+              //                 ? "+91"
+              //                 : _selectedCountry!.callingCode,
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.bold, fontSize: 16),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Space(16),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(

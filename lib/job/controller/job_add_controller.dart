@@ -26,6 +26,8 @@ class JobAddController extends GetxController {
   final selectedTagName = ''.obs;
   var pickedImage = ''.obs;
   var isPosting = false.obs;
+  var selectedDateTime = DateTime.now().obs;
+  var isDateTimeSelected = false.obs;
 
   String location = '';
   String description = '';
@@ -96,6 +98,7 @@ class JobAddController extends GetxController {
           selectedTag.id,
         ],
         'image': imageUrl,
+        'date': selectedDateTime.value.toIso8601String(),
       };
 
       await api.postApi('/api/job/jobs/', data);

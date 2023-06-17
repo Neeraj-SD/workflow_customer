@@ -253,24 +253,33 @@ class _ServiceScreenState extends State<ServiceScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text("Apartment Size",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                  Space(16),
-                  ApartmentSizeComponent(),
-                  Space(16),
-                  Text("Area in Sqft",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                  Space(16),
+                  // Text("Apartment Size",
+                  //     style:
+                  //         TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  // Space(16),
+                  // ApartmentSizeComponent(),
+                  // Space(16),
+                  // Text("Area in Sqft",
+                  //     style:
+                  //         TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  // Space(16),
                   TextField(
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.multiline,
                     style: TextStyle(fontSize: 16),
-                    inputFormatters: [LengthLimitingTextInputFormatter(4)],
-                    decoration: commonInputDecoration(
-                      hintText: "Area in  squre fit",
-                      suffixIcon: Icon(Icons.add, size: 16),
+                    // inputFormatters: [LengthLimitingTextInputFormatter(4)],
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      hintText: 'Description',
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(16),
+                        ),
+                      ),
                     ),
+                    // decoration: commonInputDecoration(
+                    //   hintText: "Description",
+                    //   suffixIcon: Icon(Icons.add, size: 16),
+                    // ),
                     onChanged: (value) {
                       selectedArea = value;
                     },

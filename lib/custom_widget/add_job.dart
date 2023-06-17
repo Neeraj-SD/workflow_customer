@@ -4,10 +4,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 
 import 'package:workflow_customer/job/controller/job_add_controller.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:workflow_customer/utils/colors.dart';
+import 'package:workflow_customer/utils/images.dart';
 // import 'package:image_cropper/image_cropper.dart';
 // import 'package:image_picker/image_picker.dart';
 // import 'package:social_media_app/constants.dart';
@@ -18,6 +20,46 @@ import 'package:workflow_customer/utils/colors.dart';
 
 class AddJobWidget extends StatelessWidget {
   // const AddPost({Key key}) : super(key: key);
+
+  Future<DateTime?> showDateTimePicker({
+    required BuildContext context,
+    DateTime? initialDate,
+    DateTime? firstDate,
+    DateTime? lastDate,
+  }) async {
+    initialDate ??= DateTime.now();
+    firstDate ??= initialDate.subtract(const Duration(days: 365 * 100));
+    lastDate ??= firstDate.add(const Duration(days: 365 * 200));
+
+    final DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+
+    if (selectedDate == null) return null;
+
+    if (!context.mounted) return selectedDate;
+
+    final TimeOfDay? selectedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(selectedDate),
+    );
+
+    final returnValue = selectedTime == null
+        ? selectedDate
+        : DateTime(
+            selectedDate.year,
+            selectedDate.month,
+            selectedDate.day,
+            selectedTime.hour,
+            selectedTime.minute,
+          );
+    jobController.isDateTimeSelected.value = true;
+    jobController.selectedDateTime.value = returnValue;
+    return returnValue;
+  }
 
   final JobAddController jobController = Get.find();
 
@@ -39,7 +81,7 @@ class AddJobWidget extends StatelessWidget {
           //       Navigator.pop(context);
           //     },
           title: const Text(
-            "Job Listings",
+            "Add Job",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
           ),
@@ -78,6 +120,48 @@ class AddJobWidget extends StatelessWidget {
                               jobController.selectedTagName.value.isEmpty
                                   ? 'Choose a Type'
                                   : '${jobController.selectedTag.name}',
+                              style: TextStyle(),
+                            ),
+                            Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.black,
+                              size: 40,
+                            ),
+                          ],
+                        ),
+                      ),
+                      // color: Colors.purpleAccent,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10,
+                  bottom: 10,
+                ),
+                child: Row(
+                  children: [
+                    OutlinedButton(
+                      onPressed: () async {
+                        // setState(() {});
+                        showDateTimePicker(context: context);
+                      },
+                      style: OutlinedButton.styleFrom(
+                        primary: Color.fromRGBO(225, 37, 255, 1),
+                        backgroundColor: Colors.transparent,
+                        side: BorderSide(
+                          width: 1.3,
+                          color: Color.fromRGBO(225, 37, 255, 1),
+                        ),
+                      ),
+                      child: Obx(
+                        () => Row(
+                          children: [
+                            Text(
+                              !jobController.isDateTimeSelected.value
+                                  ? 'Choose a Date'
+                                  : '${DateFormat.yMd().add_jm().format(jobController.selectedDateTime.value)}',
                               style: TextStyle(),
                             ),
                             Icon(
@@ -445,9 +529,10 @@ class CustomCommunitySearchDelegate extends SearchDelegate {
         itemCount: jobController.tags.length,
         itemBuilder: (_, index) => ListTile(
           title: Text('${jobController.tags[index].name}'),
-          // leading: CircleAvatar(
-          //   backgroundImage: NetworkImage(snapshot.data?[ind]),
-          // ),
+          leading: CircleAvatar(
+            backgroundImage:
+                NetworkImage(jobController.tags[index].image ?? NOIMAGE),
+          ),
           onTap: () {
             jobController.setSelectedTag(jobController.tags[index]);
             close(context, null);

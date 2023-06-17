@@ -18,7 +18,7 @@ class BookingHistoryScreen extends StatelessWidget {
           itemCount: controller.pastJobs.length,
           itemBuilder: (BuildContext context, int index) {
             return BookingHistoryComponent(index,
-                lastBooking: controller.pastJobs[index]);
+                jobModel: controller.pastJobs[index]);
           },
         ),
       ),

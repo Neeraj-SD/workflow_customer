@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workflow_customer/job/controller/job_controller.dart';
 import 'package:workflow_customer/screens/last_booking_screen.dart';
 import 'package:workflow_customer/utils/colors.dart';
@@ -158,7 +159,9 @@ class CancelBookingScreen extends StatelessWidget {
                                               color: greyColor, size: 14),
                                           Space(2),
                                           Text(
-                                            '120 min',
+                                            DateFormat("h:mm a").format(
+                                                selectedJob.date ??
+                                                    DateTime.now()),
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 10),
@@ -169,7 +172,10 @@ class CancelBookingScreen extends StatelessWidget {
                                                   color: greyColor,
                                                   fontSize: 8)),
                                           Space(2),
-                                          Text("Thursday",
+                                          Text(
+                                              DateFormat("EEE, MMM d").format(
+                                                  selectedJob.date ??
+                                                      DateTime.now()),
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 10)),
@@ -179,37 +185,37 @@ class CancelBookingScreen extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                  borderRadius: (BorderRadius.circular(5)),
-                                  border: Border.all(
-                                      width: 1,
-                                      color: itemCountContainerBorder),
-                                  color: itemCountContainer,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.remove,
-                                        color: blackColor, size: 16),
-                                    Container(
-                                      margin:
-                                          EdgeInsets.symmetric(horizontal: 3),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 2),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(3),
-                                          color: whiteColor),
-                                      child: Text(itemCount.toString(),
-                                          style: TextStyle(
-                                              color: blackColor, fontSize: 16)),
-                                    ),
-                                    Icon(Icons.add,
-                                        color: blackColor, size: 16),
-                                  ],
-                                ),
-                              ),
+                              // Container(
+                              //   padding: EdgeInsets.all(3),
+                              //   decoration: BoxDecoration(
+                              //     borderRadius: (BorderRadius.circular(5)),
+                              //     border: Border.all(
+                              //         width: 1,
+                              //         color: itemCountContainerBorder),
+                              //     color: itemCountContainer,
+                              //   ),
+                              //   child: Row(
+                              //     children: [
+                              //       Icon(Icons.remove,
+                              //           color: blackColor, size: 16),
+                              //       Container(
+                              //         margin:
+                              //             EdgeInsets.symmetric(horizontal: 3),
+                              //         padding: EdgeInsets.symmetric(
+                              //             horizontal: 8, vertical: 2),
+                              //         decoration: BoxDecoration(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(3),
+                              //             color: whiteColor),
+                              //         child: Text(itemCount.toString(),
+                              //             style: TextStyle(
+                              //                 color: blackColor, fontSize: 16)),
+                              //       ),
+                              //       Icon(Icons.add,
+                              //           color: blackColor, size: 16),
+                              //     ],
+                              //   ),
+                              // ),
                             ],
                           ),
                           Space(42),
@@ -299,53 +305,86 @@ class CancelBookingScreen extends StatelessWidget {
                     ],
                   ),
                   Space(8),
-                  ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: selectedJob.bids?.length ?? 0,
-                      itemBuilder: (context, index) => GestureDetector(
-                            onTap: () => controller.setSelectedBid(index),
-                            child: Obx(
-                              () => Card(
-                                color:
-                                    controller.selectedBidIndex.value == index
+                  selectedJob.bids?.length == 0
+                      ? const Center(
+                          child: Text('No bids.'),
+                        )
+                      : ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: selectedJob.bids?.length ?? 0,
+                          itemBuilder: (context, index) => GestureDetector(
+                                onTap: () => controller.setSelectedBid(index),
+                                child: Obx(
+                                  () => Card(
+                                    color: controller.selectedBidIndex.value ==
+                                            index
                                         ? cardColorDark
                                         : cardColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Padding(
-                                    padding: EdgeInsets.all(8),
-                                    child: ListTile(
-                                      leading: CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                            "${selectedJob.bids?[index].user?.picture}"),
-                                      ),
-                                      title: Text(
-                                        "${selectedJob.bids?[index].user?.name}",
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                            color: controller.selectedBidIndex
-                                                        .value ==
-                                                    index
-                                                ? Colors.white
-                                                : greyColor,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14),
-                                      ),
-                                      trailing: Text(
-                                        "₹${selectedJob.bids?[index].amount}",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: controller.selectedBidIndex
-                                                        .value ==
-                                                    index
-                                                ? Colors.white
-                                                : null),
-                                      ),
-                                    )),
-                              ),
-                            ),
-                          )),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: ListTile(
+                                          leading: CircleAvatar(
+                                            backgroundImage: NetworkImage(
+                                                "${selectedJob.bids?[index].user?.picture}"),
+                                          ),
+                                          title: Text(
+                                            "${selectedJob.bids?[index].user?.name}",
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                                color: controller
+                                                            .selectedBidIndex
+                                                            .value ==
+                                                        index
+                                                    ? Colors.white
+                                                    : greyColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                          subtitle: Row(
+                                            children: [
+                                              Icon(Icons.star,
+                                                  color: starIconColor,
+                                                  size: 16),
+                                              Text(
+                                                '${selectedJob.bids?[index].user?.userRating}',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16),
+                                              ),
+                                            ],
+                                          ),
+                                          // subtitle: Text(
+                                          //   "Rating: ${selectedJob.bids?[index].user?.userRating}/5",
+                                          //   textAlign: TextAlign.start,
+                                          //   style: TextStyle(
+                                          //       color: controller
+                                          //                   .selectedBidIndex
+                                          //                   .value ==
+                                          //               index
+                                          //           ? Colors.white
+                                          //           : greyColor,
+                                          //       fontWeight: FontWeight.bold,
+                                          //       fontSize: 14),
+                                          // ),
+                                          trailing: Text(
+                                            "₹${selectedJob.bids?[index].amount}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: controller
+                                                            .selectedBidIndex
+                                                            .value ==
+                                                        index
+                                                    ? Colors.white
+                                                    : null),
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              )),
 
                   Space(8),
                 ],

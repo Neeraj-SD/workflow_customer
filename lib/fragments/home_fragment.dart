@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
+import 'package:workflow_customer/auth/controller/auth_controller.dart';
 import 'package:workflow_customer/components/combos_subscriptions_component.dart';
 import 'package:workflow_customer/components/customer_review_component.dart';
 import 'package:workflow_customer/components/home_contruction_component.dart';
@@ -8,6 +10,7 @@ import 'package:workflow_customer/components/popular_service_component.dart';
 import 'package:workflow_customer/components/renovate_home_component.dart';
 import 'package:workflow_customer/fragments/bookings_fragment.dart';
 import 'package:workflow_customer/models/customer_details_model.dart';
+import 'package:workflow_customer/profile/controller/profile_controller.dart';
 import 'package:workflow_customer/screens/notification_screen.dart';
 import 'package:workflow_customer/screens/service_providers_screen.dart';
 import 'package:workflow_customer/screens/sign_in_screen.dart';
@@ -34,6 +37,9 @@ class HomeFragment extends StatefulWidget {
 class _HomeFragmentState extends State<HomeFragment> {
   double aspectRatio = 0.0;
   List<String> bannerList = [banner1, banner2, banner];
+
+  final ProfileController profileController = Get.find();
+  final AuthController authController = Get.find();
 
   final offerPagesController =
       PageController(viewportFraction: 0.93, keepPage: true, initialPage: 1);
@@ -67,13 +73,7 @@ class _HomeFragmentState extends State<HomeFragment> {
             ),
             TextButton(
               child: Text('Yes'),
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()),
-                  (route) => false,
-                );
-              },
+              onPressed: () => authController.signOut(),
             ),
           ],
         );
@@ -128,29 +128,24 @@ class _HomeFragmentState extends State<HomeFragment> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(16),
-                    child: Text(
-                      "J",
-                      style: TextStyle(
-                          fontSize: 24.0,
-                          color: appData.isDark ? Colors.black : whiteColor),
-                      textAlign: TextAlign.center,
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: appData.isDark ? whiteColor : Colors.black,
+                    // padding: EdgeInsets.all(16),
+                    child: CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('${profileController.user.picture}'),
+                      radius: 24,
                     ),
                   ),
                   Space(4),
                   Text(
-                    getName,
+                    profileController.user.name ?? 'No Name',
                     style: TextStyle(
                         fontSize: 18,
                         color: appData.isDark ? whiteColor : Colors.black,
                         fontWeight: FontWeight.bold),
                   ),
                   Space(4),
-                  Text(getEmail, style: TextStyle(color: secondaryColor)),
+                  Text(profileController.user.email ?? 'No email',
+                      style: TextStyle(color: secondaryColor)),
                 ],
               ),
             ),
@@ -163,17 +158,17 @@ class _HomeFragmentState extends State<HomeFragment> {
                     MaterialPageRoute(builder: (context) => MyProfileScreen()));
               },
             ),
-            drawerWidget(
-              drawerTitle: "My Favourites",
-              drawerIcon: Icons.favorite,
-              drawerOnTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FavouriteProvidersScreen()));
-              },
-            ),
+            // drawerWidget(
+            //   drawerTitle: "My Favourites",
+            //   drawerIcon: Icons.favorite,
+            //   drawerOnTap: () {
+            //     Navigator.pop(context);
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => FavouriteProvidersScreen()));
+            //   },
+            // ),
             drawerWidget(
               drawerTitle: "Notifications",
               drawerIcon: Icons.notifications,
@@ -197,27 +192,27 @@ class _HomeFragmentState extends State<HomeFragment> {
                 );
               },
             ),
-            drawerWidget(
-              drawerTitle: "Refer and earn",
-              drawerIcon: Icons.paid_rounded,
-              drawerOnTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            drawerWidget(
-              drawerTitle: "Contact Us",
-              drawerIcon: Icons.mail,
-              drawerOnTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            drawerWidget(
-              drawerTitle: "Help Center",
-              drawerIcon: Icons.question_mark_rounded,
-              drawerOnTap: () {
-                Navigator.pop(context);
-              },
-            ),
+            // drawerWidget(
+            //   drawerTitle: "Refer and earn",
+            //   drawerIcon: Icons.paid_rounded,
+            //   drawerOnTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
+            // drawerWidget(
+            //   drawerTitle: "Contact Us",
+            //   drawerIcon: Icons.mail,
+            //   drawerOnTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
+            // drawerWidget(
+            //   drawerTitle: "Help Center",
+            //   drawerIcon: Icons.question_mark_rounded,
+            //   drawerOnTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
             drawerWidget(
               drawerTitle: "Logout",
               drawerIcon: Icons.logout,
@@ -314,51 +309,51 @@ class _HomeFragmentState extends State<HomeFragment> {
             ),
             HomeConstructionComponent(),
             Space(16),
-            homeTitleWidget(
-              titleText: "Popular Services",
-              onAllTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(
-                        list: serviceProviders, fromProviderDetails: false),
-                  ),
-                );
-              },
-            ),
-            Space(4),
-            PopularServiceComponent(),
-            Space(24),
-            homeTitleWidget(
-              titleText: "Renovate your home",
-              onAllTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(
-                        list: serviceProviders, fromProviderDetails: false),
-                  ),
-                );
-              },
-            ),
-            Space(4),
-            RenovateHomeComponent(),
-            Space(24),
-            homeTitleWidget(
-              titleText: "Combos And Subscriptions",
-              onAllTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AllCategoriesScreen(
-                        list: serviceProviders, fromProviderDetails: false),
-                  ),
-                );
-              },
-            ),
-            Space(4),
-            CombosSubscriptionsComponent(),
-            Space(32),
+            // homeTitleWidget(
+            //   titleText: "Popular Services",
+            //   onAllTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => AllCategoriesScreen(
+            //             list: serviceProviders, fromProviderDetails: false),
+            //       ),
+            //     );
+            //   },
+            // ),
+            // Space(4),
+            // PopularServiceComponent(),
+            // Space(24),
+            // homeTitleWidget(
+            //   titleText: "Renovate your home",
+            //   onAllTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => AllCategoriesScreen(
+            //             list: serviceProviders, fromProviderDetails: false),
+            //       ),
+            //     );
+            //   },
+            // ),
+            // Space(4),
+            // RenovateHomeComponent(),
+            // Space(24),
+            // homeTitleWidget(
+            //   titleText: "Combos And Subscriptions",
+            //   onAllTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => AllCategoriesScreen(
+            //             list: serviceProviders, fromProviderDetails: false),
+            //       ),
+            //     );
+            //   },
+            // ),
+            // Space(4),
+            // CombosSubscriptionsComponent(),
+            // Space(32),
             Align(
               alignment: Alignment.topLeft,
               child: Padding(

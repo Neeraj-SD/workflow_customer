@@ -14,22 +14,26 @@ class TagModel {
   int? id;
   String? name;
   String? slug;
+  String? image;
 
   TagModel({
     this.id,
     this.name,
     this.slug,
+    this.image,
   });
 
   factory TagModel.fromJson(Map<String, dynamic> json) => TagModel(
         id: json["id"],
         name: json["name"],
         slug: json["slug"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "slug": slug,
+        "image": image,
       };
 }

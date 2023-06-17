@@ -31,3 +31,6 @@ const String amazonPay = "assets/images/amazonPay.png";
 const String freeCharge = "assets/images/freeCharge.png";
 const String olaMoney = "assets/images/olaMoney.png";
 const String splash_logo = "assets/images/splash_logo.png";
+
+const String NOIMAGE =
+    "https://firebasestorage.googleapis.com/v0/b/mini-project-23885.appspot.com/o/app%2Fno-image.png?alt=media&token=eeaabef7-e96a-487d-95b1-b8c2ba5e3bf2";

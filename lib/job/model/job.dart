@@ -16,7 +16,7 @@ class JobModel {
   String? description;
   int? timeMinutes;
   List<Tag>? tags;
-  dynamic image;
+  String? image;
   int? user;
   String? location;
   int? customerRating;
@@ -25,6 +25,7 @@ class JobModel {
   DateTime? createdAt;
   List<Bid>? bids;
   bool? isOpen;
+  DateTime? date;
 
   JobModel({
     this.id,
@@ -41,6 +42,7 @@ class JobModel {
     this.createdAt,
     this.bids,
     this.isOpen,
+    this.date,
   });
 
   factory JobModel.fromJson(Map<String, dynamic> json) => JobModel(
@@ -66,6 +68,7 @@ class JobModel {
             ? []
             : List<Bid>.from(json["bids"]!.map((x) => Bid.fromJson(x))),
         isOpen: json["is_open"],
+        date: json["date"] == null ? null : DateTime.parse(json["date"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -87,6 +90,7 @@ class JobModel {
             ? []
             : List<dynamic>.from(bids!.map((x) => x.toJson())),
         "is_open": isOpen,
+        "date": date?.toIso8601String(),
       };
 }
 
@@ -129,6 +133,7 @@ class User {
   String? address;
   int? id;
   String? email;
+  int? userRating;
 
   User({
     this.name,
@@ -137,6 +142,7 @@ class User {
     this.address,
     this.id,
     this.email,
+    this.userRating,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -146,6 +152,7 @@ class User {
         address: json["address"],
         id: json["id"],
         email: json["email"],
+        userRating: json["user_rating"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -155,6 +162,7 @@ class User {
         "address": address,
         "id": id,
         "email": email,
+        "user_rating": userRating,
       };
 }
 
@@ -162,22 +170,26 @@ class Tag {
   int? id;
   String? name;
   String? slug;
+  String? image;
 
   Tag({
     this.id,
     this.name,
     this.slug,
+    this.image,
   });
 
   factory Tag.fromJson(Map<String, dynamic> json) => Tag(
         id: json["id"],
         name: json["name"],
         slug: json["slug"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "slug": slug,
+        "image": image,
       };
 }

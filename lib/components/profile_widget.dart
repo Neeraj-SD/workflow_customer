@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:workflow_customer/profile/controller/profile_controller.dart';
 
 class ProfileWidget extends StatelessWidget {
+  final ProfileController profileController = Get.find();
   final String imagePath;
   final bool isEdit;
   final VoidCallback onClicked;
 
-  const ProfileWidget({Key? key, required this.imagePath, this.isEdit = false, required this.onClicked}) : super(key: key);
+  ProfileWidget(
+      {Key? key,
+      required this.imagePath,
+      this.isEdit = false,
+      required this.onClicked})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +32,7 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    final image = AssetImage(imagePath);
+    final image = NetworkImage('${profileController.user.picture}');
 
     return ClipOval(
       child: Material(
@@ -46,7 +54,8 @@ class ProfileWidget extends StatelessWidget {
         child: buildCircle(
           color: color,
           all: 4,
-          child: Icon(isEdit ? Icons.add_a_photo : Icons.edit, color: Colors.white, size: 16),
+          child: Icon(isEdit ? Icons.add_a_photo : Icons.edit,
+              color: Colors.white, size: 16),
         ),
       );
 
@@ -56,6 +65,7 @@ class ProfileWidget extends StatelessWidget {
     required Color color,
   }) =>
       ClipOval(
-        child: Container(padding: EdgeInsets.all(all), color: color, child: child),
+        child:
+            Container(padding: EdgeInsets.all(all), color: color, child: child),
       );
 }

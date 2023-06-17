@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:workflow_customer/components/profile_widget.dart';
 import 'package:workflow_customer/components/text_field_widget.dart';
 import 'package:workflow_customer/models/customer_details_model.dart';
+import 'package:workflow_customer/profile/controller/profile_controller.dart';
 import 'package:workflow_customer/screens/dashboard_screen.dart';
 import 'package:workflow_customer/utils/colors.dart';
 import 'package:workflow_customer/utils/images.dart';
@@ -14,6 +16,7 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
+  final ProfileController profileController = Get.find();
   String customerName = "";
   String customerEmail = "";
   String customerAbout = "";
@@ -44,22 +47,23 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               ),
               child: Text("Save", style: TextStyle(fontSize: 16)),
               onPressed: () {
-                if (customerName != "") {
-                  setName(customerName);
-                }
-                if (customerEmail != "") {
-                  setEmail(customerEmail);
-                }
-                if (customerAbout != "") {
-                  setAbout(customerAbout);
-                }
-                setState(() {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => DashBoardScreen()),
-                    (route) => false,
-                  );
-                });
+                profileController.onProfileUpdate();
+                // if (customerName != "") {
+                //   setName(customerName);
+                // }
+                // if (customerEmail != "") {
+                //   setEmail(customerEmail);
+                // }
+                // if (customerAbout != "") {
+                //   setAbout(customerAbout);
+                // }
+                // setState(() {
+                //   Navigator.pushAndRemoveUntil(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => DashBoardScreen()),
+                //     (route) => false,
+                //   );
+                // });
               },
             ),
           );
@@ -74,6 +78,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           ProfileWidget(imagePath: userImage, onClicked: () {}),
           SizedBox(height: 20),
           TextFieldWidget(
+            controller: profileController.nameController,
             label: "Full Name",
             text: getName,
             onChanged: (name) {
@@ -82,6 +87,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           ),
           SizedBox(height: 15),
           TextFieldWidget(
+            controller: profileController.phoneController,
             label: "Phone Number",
             text: getEmail,
             onChanged: (email) {
@@ -90,6 +96,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           ),
           SizedBox(height: 15),
           TextFieldWidget(
+            controller: profileController.locationController,
             label: "Location",
             text: getAbout,
             maxLines: 5,

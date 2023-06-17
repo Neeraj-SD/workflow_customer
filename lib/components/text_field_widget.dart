@@ -1,4 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:workflow_customer/profile/controller/profile_controller.dart';
 
 import '../custom_widget/space.dart';
 
@@ -7,6 +11,7 @@ class TextFieldWidget extends StatefulWidget {
   final String label;
   final String text;
   final ValueChanged<String> onChanged;
+  final TextEditingController controller;
 
   const TextFieldWidget({
     Key? key,
@@ -14,6 +19,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.label,
     required this.text,
     required this.onChanged,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -22,30 +28,33 @@ class TextFieldWidget extends StatefulWidget {
 
 class TextFieldWidgetState extends State<TextFieldWidget> {
   late final TextEditingController controller;
+  final ProfileController profileController = Get.find();
 
   @override
   void initState() {
     super.initState();
 
-    controller = TextEditingController(text: widget.text);
+    controller = widget.controller;
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.label, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(widget.label,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           Space(4),
           TextField(
             controller: controller,
             decoration: InputDecoration(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
             ),
             maxLines: widget.maxLines,
             onChanged: widget.onChanged,
