@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workflow_customer/models/active_bookings_model.dart';
 import 'package:workflow_customer/models/combos_services_model.dart';
 import 'package:workflow_customer/models/renovate_services_model.dart';
+import 'package:workflow_customer/screens/last_booking_screen.dart';
 import 'package:workflow_customer/screens/payment_screen.dart';
 
 import '../custom_widget/space.dart';
@@ -103,11 +104,11 @@ class _OrderSummeryScreenState extends State<OrderSummeryScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PaymentScreen(
-                            weekday: widget.weekday == ""
-                                ? "Thursday"
-                                : widget.weekday,
-                            list: widget.list,
+                          builder: (context) => LastBookingScreen(
+                            cancel: false,
+                            weekday: widget.weekday,
+                            date: widget.list[0].date,
+                            time: widget.list[0].time,
                           ),
                         ),
                       );

@@ -142,7 +142,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "\$ ${serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].servicePrice}",
+                    "\Rs ${serviceProviders[widget.serviceIndex].serviceProviders[widget.providerIndex].providerServices[widget.index].servicePrice}",
                     style: TextStyle(
                       fontSize: 18,
                       color: appData.isDark

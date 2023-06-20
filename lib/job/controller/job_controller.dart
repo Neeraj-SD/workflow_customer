@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workflow_customer/core/api_provider.dart';
 import 'package:workflow_customer/job/model/job.dart';
 import 'package:workflow_customer/screens/cancel_booking_screen.dart';
@@ -64,6 +65,14 @@ class JobController extends GetxController {
     int bidId = selectedJob.bids?[selectedBidIndex.value].id ?? 0;
     final result = await api.postApi('/api/job/bids/$bidId/accept-bid/', {});
     pullToRefresh();
-    Get.off(() => LastBookingScreen(cancel: false));
+    Get.off(() => LastBookingScreen(
+          cancel: false,
+          weekday:
+              DateFormat('EEEE').format(selectedJob.date ?? DateTime.now()),
+          time: DateFormat('h:mm').format(selectedJob.date ?? DateTime.now()),
+          date: DateFormat.yMMMMd('en_US').format(
+            selectedJob.date ?? DateTime.now(),
+          ),
+        ));
   }
 }

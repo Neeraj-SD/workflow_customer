@@ -9,11 +9,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:workflow_customer/auth/model/user.dart';
 import 'package:workflow_customer/core/api_provider.dart';
+import 'package:workflow_customer/job/controller/fcm_controller.dart';
 import 'package:workflow_customer/job/controller/job_controller.dart';
 import 'package:workflow_customer/job/model/tag.dart';
 
 class JobAddController extends GetxController {
   final ApiProvider api = Get.find();
+  final FCMController fcmController = Get.find();
   final _getStorage = GetStorage();
   final storageRef = FirebaseStorage.instance.ref();
   late Reference? imagesRef = storageRef.child('images');
@@ -102,6 +104,10 @@ class JobAddController extends GetxController {
       };
 
       await api.postApi('/api/job/jobs/', data);
+      fcmController.callOnFcmApiSendPushNotifications(
+          topic: 'workers',
+          title: 'New Jobs available',
+          body: 'You can now bid on new jobs.');
       jobController.fetchActiveJobs();
       Get.back();
       // fetchAllStories();
